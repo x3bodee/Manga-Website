@@ -1,7 +1,4 @@
 express mongoose ejs express-ejs-layouts
 moment dotenv method-override bcrypt
 passport passport-local express-session
-
-
-
 connect-flash toastify 
