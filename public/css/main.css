@@ -10,6 +10,11 @@ body{
 
 #navbar{
     background-color: #14213D;
+    font-size: 23px;
+}
+
+.navbar-brand{
+    font-size: 28px;
 }
 
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
@@ -19,4 +24,18 @@ body{
 
 .navbar-light .navbar-nav .nav-link:hover , .navbar-light .navbar-brand:hover{
     color: #FCA311;
+}
+
+
+
+footer{
+    margin-top: 20px;
+    text-align: center;
+    padding: 18px;
+    background-color:#14213D ;
+    width: 100%;
+    color: #E5E5E5;
+}
+.main {
+    min-height: calc( 100vh - (48px + 116px) ) ;
 }

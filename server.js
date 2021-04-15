@@ -64,10 +64,24 @@ app.set('view engine' , 'ejs');
 //     }
 //   );
 
-app.listen(PORT , () => console.log(`server twitter work now ${PORT} `))
+app.listen(PORT , () => console.log(`server manga work now ${PORT} `))
 
 app.get('/' , (req ,res ) => {
 
   res.render('home/home')
+ 
+})
+
+
+app.get('/manga' , (req ,res ) => {
+
+  res.render('manga/show')
+ 
+})
+
+
+app.get('/chapter' , (req ,res ) => {
+
+  res.render('chapter/show')
  
 })
