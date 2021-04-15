@@ -1,12 +1,13 @@
-require('dotenv').config();
+require('dotenv').config()
+
 const express = require("express");
 
-const mongoose = require("mongoose");
+//const mongoose = require("mongoose");
 
 const PORT = process.env.PORT;
 
 const expresslayouts = require("express-ejs-layouts");
-// var flash = require('connect-flash');
+//var flash = require('connect-flash');
 
 // Initialize express
 const app = express();
@@ -17,20 +18,15 @@ app.use(express.static("public"));
 // Look into the views folder for layout.ejs file
 app.use(expresslayouts);
 
-// Import Routes
-// const indexRoute = require('./routes/index');
-// const articleRoute = require('./routes/article');
-// const authRoute = require('./routes/auth');
-
 // Express Session and Passport
-// let session = require('express-session');
-// let passport = require('./helper/ppConfig');
+//let session = require('express-session');
+//let passport = require('./helper/ppConfig');
 
 // app.use(session({
 //     secret: process.env.SECRET,
 //     saveUninitialized: true,
 //     resave: false,
-//     cookie: {maxAge: 360000}
+//     cookie: {maxAge: 36000000}
 // }))
 
 // Initialize Passport and Passport Session
@@ -39,36 +35,53 @@ app.use(expresslayouts);
 
 // app.use(flash());
 
-// Sharing information to other pages
+// // Sharing information to other pages
 // app.use(function(req, res, next){
 //     res.locals.currentUser = req.user;
 //     res.locals.alerts = req.flash();
 //     next();
 // })
 
+app.set('view engine' , 'ejs');
 
-// Mount Routes
-// app.use('/', indexRoute);
-// app.use('/', articleRoute);
-// app.use('/', authRoute);
 
-// Setting view engine to ejs.
-// Node.js to look into the folder views for all ejs files
-app.set("view engine", "ejs");
 
-mongoose.connect(
-  process.env.mongoDBURL,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-  },
-  () => {
-    console.log("Mongodb connected seccessfully!!!");
-  }
-);
+// routes
+//app.use(require('./routes/user'))
+//app.use(require('./routes/twitt'))
 
-// Listen for HTTP request on PORT 4000
-app.listen(PORT, () => {
-  console.log(`Running on PORT  ${PORT}`);
-});
+//console.log(process.env.mongoDBURL);
+
+// mongoose.connect(
+//     process.env.mongoDBURL,
+//     {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//       useCreateIndex: true
+//     },
+//     () => {
+//       console.log("Mongodb connected seccessfully!!!");
+//     }
+//   );
+
+app.listen(PORT , () => console.log(`server manga work now ${PORT} `))
+
+app.get('/' , (req ,res ) => {
+
+  res.render('home/home')
+ 
+})
+
+
+app.get('/manga' , (req ,res ) => {
+
+  res.render('manga/show')
+ 
+})
+
+
+app.get('/chapter' , (req ,res ) => {
+
+  res.render('chapter/show')
+ 
+})
