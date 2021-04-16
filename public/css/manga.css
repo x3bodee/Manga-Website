@@ -1,0 +1,49 @@
+/* 
+#E5E5E5
+#14213D
+#FCA311
+*/
+
+.container{
+    color: #14213D;
+}
+
+.card-img{
+    padding: 1px;
+    margin-top: 3px;
+    padding-bottom: 0;
+    border: 5px;
+}
+
+#zero-top{
+    margin-top: 0;
+    padding-top: 0;
+}
+
+
+.card-title span{
+    cursor: pointer;
+}
+
+.card-title span:hover{
+    color: red;
+}
+
+.card-body{
+    justify-content: space-around;
+}
+
+.btn-dark{
+    background-color: #14213D;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    width: 100%;
+}
+
+.center{
+    margin: 0 auto;
+}
+
+.mx-auto{
+    margin: 0 auto;
+}
