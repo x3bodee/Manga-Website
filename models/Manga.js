@@ -13,7 +13,7 @@ const MangaSchema = mongoose.Schema({
     },
 
     genres :{
-        type : String,
+        type : Array,
         required : true,  
     },
 
