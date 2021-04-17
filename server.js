@@ -90,3 +90,13 @@ app.get('/chapter' , (req ,res ) => {
   res.render('chapter/show')
  
 })
+app.get('/login' , (req ,res ) => {
+
+  res.render('auth/login')
+ 
+})
+app.get('/signup' , (req ,res ) => {
+
+  res.render('auth/signup')
+ 
+})
