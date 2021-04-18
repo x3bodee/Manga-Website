@@ -86,9 +86,24 @@ app.get('/manga/add', (req, res) => {
   res.render('manga/add')
 
 })
+app.get('/chapter/add' , (req ,res ) => {
+
+  res.render('chapter/add')
+ 
+})
 
 app.get('/chapter', (req, res) => {
 
   res.render('chapter/show')
 
+})
+app.get('/signup' , (req ,res ) => {
+
+  res.render('auth/signup')
+ 
+})
+app.get('/allmanga' , (req ,res ) => {
+
+  res.render('manga/allManga')
+ 
 })

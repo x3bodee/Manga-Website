@@ -1,0 +1,42 @@
+<head>
+    <link rel="stylesheet" href="/css/forms.css">
+  </head>
+  
+  <div class="container">
+    <form>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="title">Chapter Title</label>
+            <input type="text" class="form-control" name="title" placeholder="Chapter Title">
+          </div>
+          <div class="col-md-6">
+            <label for="number">Chapter Number</label>
+            <input type="number" class="form-control" required name="number" min="0" value="0" step=".1" placeholder="Chapter Number">
+          </div>
+        </div>
+        
+        <div class="row">
+            
+            <div class="form-group">
+                <label for="links">Links</label>
+                <textarea class="form-control" name="links" rows="10"></textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="other_names">Number of Pages</label>
+              <input type="number" class="form-control" name="pages" placeholder="Number of Pages">
+            </div>
+            <div class="col-md-6">
+                <!-- this will be equal to user id -->
+                <input type="text" hidden class="form-control" value="" name="created_by">
+                <!-- this will be equal to manga id -->
+                <input type="text" hidden class="form-control" value="" name="manga_id">
+            </div>
+        </div>
+         
+        <div class="button-center">
+            <button type="submit" class="btn btn-primary submit">Submit</button>
+        </div>
+        
+      </form>
+  
+  </div>
