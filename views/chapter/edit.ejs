@@ -3,15 +3,16 @@
   </head>
   
   <div class="container">
-    <form>
+    <form method="POST" action="/chapter/edit/?id=<%=chapter._id %>&_method=PUT">
         <div class="row">
           <div class="col-md-6">
             <label for="title">Chapter Title</label>
-            <input type="text" class="form-control" name="title" placeholder="Chapter Title">
+            <input type="text" class="form-control" name="title" placeholder="Chapter Title" value="<%=chapter.title%>">
           </div>
           <div class="col-md-6">
             <label for="number">Chapter Number</label>
-            <input type="number" class="form-control" required name="number" min="0" value="0" step=".1" placeholder="Chapter Number">
+            <input type="number" class="form-control" required name="number" min="0" value="0" step=".1" placeholder="Chapter Number"
+            value="<%=chapter.number%>">
           </div>
         </div>
         
@@ -19,17 +20,20 @@
             
             <div class="form-group">
                 <label for="links">Links</label>
-                <textarea class="form-control" name="links" rows="10"></textarea>
+
+                <textarea class="form-control" name="pages" rows="10"><%=chapter.pages%></textarea>
+                
             </div>
-            <div class="col-md-6">
+           <!-- <div class="col-md-6">
               <label for="other_names">Number of Pages</label>
               <input type="number" class="form-control" name="pages" placeholder="Number of Pages">
-            </div>
+            </div>-->
             <div class="col-md-6">
                 <!-- this will be equal to user id -->
                 <input type="text" hidden class="form-control" value="" name="created_by">
                 <!-- this will be equal to manga id -->
-                <input type="text" hidden class="form-control" value="" name="manga_id">
+                <label for="manga-id">Manga ID</label>
+                <input type="text" class="form-control" name="manga_id" value="<%=chapter.manga_id%>">
             </div>
         </div>
          

@@ -3,7 +3,7 @@
 </head>
 
 <div class="container">
-  <form>
+  <form method="POST" action="/chapter/add">
       <div class="row">
         <div class="col-md-6">
           <label for="title">Chapter Title</label>
@@ -19,17 +19,21 @@
           
           <div class="form-group">
               <label for="links">Links</label>
-              <textarea class="form-control" name="links" rows="10"></textarea>
+              <textarea class="form-control" name="pages" rows="10"></textarea>
           </div>
+          <!--
           <div class="col-md-6">
             <label for="other_names">Number of Pages</label>
             <input type="number" class="form-control" name="pages" placeholder="Number of Pages">
           </div>
+        -->
+
           <div class="col-md-6">
               <!-- this will be equal to user id -->
               <input type="text" hidden class="form-control" value="" name="created_by">
               <!-- this will be equal to manga id -->
-              <input type="text" hidden class="form-control" value="" name="manga_id">
+              <label for="manga-id">Manga ID</label>
+              <input type="text" class="form-control" value="" name="manga_id">
           </div>
       </div>
        
