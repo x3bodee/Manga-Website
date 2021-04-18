@@ -1,7 +1,13 @@
 <div class="container">
-    <img class="img-fluid mx-auto d-block" src="img/chapter.png"alt="chapter"></a>
-    <img class="img-fluid mx-auto d-block" src="img/chapter.png"alt="chapter"></a>
-    <img class="img-fluid mx-auto d-block" src="img/chapter.png"alt="chapter"></a>
+
+ <% chapter.pages.forEach((page) =>{ %>
+
+    <img class="img-fluid mx-auto d-block" src="<%=page.split('\r')[0]%>"alt="chapter"></a>
+
+    <%})%>
+
+    <!--<img class="img-fluid mx-auto d-block" src="img/chapter.png"alt="chapter"></a>
+    <img class="img-fluid mx-auto d-block" src="img/chapter.png"alt="chapter"></a>-->
 </div>
 <br>
 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-
+const bcrypt = require('bcrypt');
+const passport = require('passport');
 
 const userSchema = mongoose.Schema({
 
@@ -20,7 +21,9 @@ const userSchema = mongoose.Schema({
 }, {
     timestamps: true // means createdAt and updatedAt
 });
-
+userSchema.methods.verifyPassword = function(password){
+    return bcrypt.compareSync(password, this.password);
+}
 const User = mongoose.model('User', userSchema)
 
 module.exports = User;
