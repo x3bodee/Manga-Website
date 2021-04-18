@@ -105,3 +105,10 @@ app.get('/signup' , (req ,res ) => {
   res.render('auth/signup')
  
 })
+
+app.get('/allmanga' , (req ,res ) => {
+
+  res.render('manga/allManga')
+ 
+})
+

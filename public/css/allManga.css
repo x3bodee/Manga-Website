@@ -1,0 +1,44 @@
+.search-icon{
+
+    color:#FCA311;
+}
+
+.manga-poster{
+    background-size: cover;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    width: 220px;
+    height: 250px;
+    position: relative;
+    overflow: hidden; 
+    border: 2px solid #FCA311;
+}
+
+
+.manga-title{
+    position: absolute;
+    top:120px;
+    left: 0;
+    background-color: white;
+    padding: 2px 8px;
+    transform: translateX(-110%);
+    transition: all 1.5s ease-in-out;
+    border: 2px solid #14213D;
+    color: #FCA311;
+    font-weight: bold;
+}
+
+
+.manga-poster:hover .manga-title {
+    transform: translateX(0%); 
+  
+}
+
+.btn-group{
+    background-color: white;
+
+}
+
+.btn-select{
+    background-color:  #FCA311;;
+}
