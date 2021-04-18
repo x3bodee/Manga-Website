@@ -84,11 +84,6 @@ app.get('/manga/add' , (req ,res ) => {
   res.render('manga/add')
  
 })
-app.get('/chapter/add' , (req ,res ) => {
-
-  res.render('chapter/add')
- 
-})
 
 app.get('/chapter' , (req ,res ) => {
 
