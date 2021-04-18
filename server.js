@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const express = require("express");
 
-//const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 const PORT = process.env.PORT;
 
@@ -47,22 +47,23 @@ app.set('view engine' , 'ejs');
 
 
 // routes
+app.use(require('./routes/chapter'))
 //app.use(require('./routes/user'))
 //app.use(require('./routes/twitt'))
 
 //console.log(process.env.mongoDBURL);
 
-// mongoose.connect(
-//     process.env.mongoDBURL,
-//     {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//       useCreateIndex: true
-//     },
-//     () => {
-//       console.log("Mongodb connected seccessfully!!!");
-//     }
-//   );
+ mongoose.connect(
+     process.env.mongoDBURL,
+    {
+      useNewUrlParser: true,
+       useUnifiedTopology: true,
+       useCreateIndex: true
+    },
+    () => {
+       console.log("Mongodb connected seccessfully!!!");
+    }   );
+
 
 app.listen(PORT , () => console.log(`server manga work now ${PORT} `))
 
@@ -84,11 +85,7 @@ app.get('/manga/add' , (req ,res ) => {
   res.render('manga/add')
  
 })
-app.get('/chapter/add' , (req ,res ) => {
 
-  res.render('chapter/add')
- 
-})
 
 app.get('/chapter' , (req ,res ) => {
 
