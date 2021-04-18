@@ -13,7 +13,28 @@
 
             <div class="col-md-8">
                 <div class="card-body">
-                    <h3 class="card-title">Solo Leveling <span><i class="far fa-heart"></i></span></h3>
+                    <% if(currentUser) { %>
+                        <% if(currentUser.type == "2") { %>
+                        <h3 class="card-title">Solo Leveling 
+                            <span><i class="far fa-heart"></i></span>
+                            <span><i class="far fa-edit"></i></span>
+                            <span><i class="far fa-trash-alt"></i></span>   
+                        </h3>
+                        <%}else if(currentUser.type == "3"){%>
+                            <h3 class="card-title">Solo Leveling 
+                                <span><i class="far fa-heart"></i></span>
+                                <span><i class="far fa-edit"></i></span>
+                            </h3>
+                            <%}else if(currentUser.type == "1"){%>
+                                <h3 class="card-title">Solo Leveling 
+                                    <span><i class="far fa-heart"></i></span>
+                                </h3>
+                                <%}%>
+                        <%}else{%>
+                            <h3 class="card-title">Solo Leveling </h3>
+                            <%}%>
+
+                   
                     <hr class="my-4">
                     <p class="card-text"><b>Rate: -/10 <br>
                             <b>Genres:</b> Lorem, Lorem, Lorem, Lorem<br>
