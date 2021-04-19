@@ -75,50 +75,52 @@ router.get("/logout", (req, res) => {
 })
 
 // HTTP GET - Profile Route
-router.get("/profile",isLoggedin,(req, res) => {
+router.get("/profile", isLoggedin, (req, res) => {
   console.log(req.user)
-  let user= req.user;
-  res.render("profile/profile",{user});
-  
+  let user = req.user;
+  res.render("profile/profile", {
+    user
+  });
+
 });
 
-//HTTP POST - Profile Updata email Route
+//HTTP POST - Profile Updata email and password Route
+
 router.post('/profile', isLoggedin, (req, res) => {
-const updatedata={
-  email:req.body.email
-  
-}
-let id = req.body.user_id;
-console.log(id)
-User.findByIdAndUpdate({_id:id},{$set :updatedata})
-.then((testuser)=>{
-console.log("then")
-console.log(testuser)
+  const updatedata = {
 
-let hash = bcrypt.hashSync(req.body.password, salt);
-if(!testuser.verifyPassword(hash)){
-  console.log("Password")
-  console.log((testuser.verifyPassword(hash)))
-    let changepass ={
-      password:hash
+  }
+
+  let email = req.user.email;
+  let password = req.user.password;
+  if (req.body.email != null && req.body.email != undefined && req.body.email != "") {
+    if (req.body.email != email) {
+      updatedata.email = req.body.email
     }
-    User.findByIdAndUpdate({_id:id},{$set :changepass})
-.then(()=>{
-  console.log("Done")
-  res.redirect('/')
+  }
+  let hash = bcrypt.hashSync(req.body.password, salt);
+  if (req.body.password != null && req.body.password != undefined && req.body.password != ""){
+    if (!bcrypt.compareSync(hash,password)) {
+    updatedata.password = hash;
+  }}
   
-})
-.catch(err=> {})
-}
-else{
-console.log("err")
- console.log((testuser.verifyPassword(hash)))
-}
-
-})
-
   
-.catch(err=> console.log(err))
+
+  let id = req.body.user_id;
+  console.log(id)
+  User.findByIdAndUpdate({
+      _id: id
+    }, {
+      $set: updatedata
+    })
+    .then((testuser) => {
+      console.log("then")
+      console.log(testuser)
+      res.redirect("/")
+    })
+    .catch(err => {
+      console.log(err)
+    })
 
 })
 

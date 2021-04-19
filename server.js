@@ -94,18 +94,3 @@ app.get('/chapter', (req, res) => {
   res.render('chapter/show')
 
 })
-<<<<<<< HEAD
-
-
-=======
-app.get('/signup' , (req ,res ) => {
-
-  res.render('auth/signup')
- 
-})
-app.get('/allmanga' , (req ,res ) => {
-
-  res.render('manga/allManga')
- 
-})
->>>>>>> 4949978abfb74943998d69b8066d6f7ce44395d4
