@@ -1,0 +1,39 @@
+
+<table class="table text-center mt-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Type</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        <% user.forEach(function(user){ %>
+         
+      <tr>
+        <th scope="row">1</th>
+        <td><%=user.username%></td>
+        <td><%=user.email%></td>
+        <td><%=user.type%></td>
+        <td>
+            <a href="/admin/userUpdate?id=<%=user._id %>">
+                <button>Update</button>
+            </a>
+        </td>
+
+        <td>
+            <a href="/admin/userDelete?id=<%=user._id %>">
+                <button>Delete</button>
+            </a>
+        </td>
+      </tr>
+ 
+      <%})%>
+   
+    </tbody>
+  </table>
+
