@@ -49,6 +49,8 @@ app.set('view engine', 'ejs');
 // routes
 app.use(require('./routes/chapter'))
 app.use(require('./routes/Auth'))
+app.use(require('./routes/request'))
+app.use(require('./routes/adminPanel'))
 
 //console.log(process.env.mongoDBURL);
 
