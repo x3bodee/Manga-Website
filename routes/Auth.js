@@ -6,7 +6,7 @@ const salt = 10;
 
 // Import passport configurations
 let passport = require("../helper/ppConfig");
-
+let isLoggedin = require("../helper/isLoggedin");
 // Import User Model
 const User = require("../models/User");
 router.use(express.urlencoded({
@@ -31,7 +31,7 @@ router.post("/signup", (req, res) => {
         //req.flash("error", "username already exists!!");
 
       }
-  //     console.log(" INCOUNT ")
+      //     console.log(" INCOUNT ")
     });
   //   console.log(" END COUNT")
   let hash = bcrypt.hashSync(req.body.password, salt);
@@ -47,7 +47,7 @@ router.post("/signup", (req, res) => {
     .catch((err) => {
       res.send("ERRROR!!!");
     });
- 
+
 });
 
 // HTTP GET - Signin Route - To load the signin form
@@ -73,5 +73,56 @@ router.get("/logout", (req, res) => {
   //req.flash("error", "You are logged out successfully.");
   res.redirect("/login");
 })
+
+// HTTP GET - Profile Route
+router.get("/profile",isLoggedin,(req, res) => {
+  console.log(req.user)
+  let user= req.user;
+  res.render("profile/profile",{user});
+  
+});
+
+//HTTP POST - Profile Updata email Route
+router.post('/profile', isLoggedin, (req, res) => {
+const updatedata={
+  email:req.body.email
+  
+}
+let id = req.body.user_id;
+console.log(id)
+User.findByIdAndUpdate({_id:id},{$set :updatedata})
+.then((testuser)=>{
+console.log("then")
+console.log(testuser)
+
+let hash = bcrypt.hashSync(req.body.password, salt);
+if(!testuser.verifyPassword(hash)){
+  console.log("Password")
+  console.log((testuser.verifyPassword(hash)))
+    let changepass ={
+      password:hash
+    }
+    User.findByIdAndUpdate({_id:id},{$set :changepass})
+.then(()=>{
+  console.log("Done")
+  res.redirect('/')
+  
+})
+.catch(err=> {})
+}
+else{
+console.log("err")
+ console.log((testuser.verifyPassword(hash)))
+}
+
+})
+
+  
+.catch(err=> console.log(err))
+
+})
+
+
+
 
 module.exports = router;
