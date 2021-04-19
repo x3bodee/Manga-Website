@@ -12,6 +12,11 @@ const MangaSchema = mongoose.Schema({
         required : true,  
     },
 
+    poster :{
+        type : String,
+        required : true,  
+    },
+
     genres :{
         type : Array,
         required : true,  
@@ -24,10 +29,9 @@ const MangaSchema = mongoose.Schema({
 
     rating :{
         type : Number,
-        required : true,  
     },
 
-    reading_diriction :{
+    reading_direction :{
         type : String,
         required : true,  
     },
@@ -37,7 +41,7 @@ const MangaSchema = mongoose.Schema({
         required : true,  
     },
 
-    artisst :{
+    artists :{
         type : String,
         required : true,  
     },
@@ -45,6 +49,10 @@ const MangaSchema = mongoose.Schema({
     description :{
         type : String,
         required : true,  
+    },
+    user_id :{
+        type: mongoose.Schema.Types.ObjectId , 
+        ref : 'User'
     },
 
 },

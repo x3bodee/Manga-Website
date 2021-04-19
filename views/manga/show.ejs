@@ -7,47 +7,43 @@
     <div class="card mb-3" style="max-width: 100%;">
         <div class="row center">
             <div class="col-md-4">
-                <img src="/img/manga-poster.webp" draggable="false"
+                <img src="<%=m.poster %>" draggable="false"
                     class="card-img" alt="solo leveling poster">
             </div>
-
+            
             <div class="col-md-8">
                 <div class="card-body">
                     <% if(currentUser) { %>
                         <% if(currentUser.type == "2") { %>
-                            <h3 class="card-title">Solo Leveling 
-                                <span><i class="far fa-heart"></i></span>
-                                <span><i class="far fa-edit"></i></span>
-                                <span><i class="far fa-trash-alt"></i></span>   
+                            <h3 class="card-title"><%=m.title%> 
+                                <span><a href=""><i class="far fa-heart"></i></a></span>
+                                <span><a href="/manga/edit/<%=m._id%>"><i class="far fa-edit"></i></a></span>
+                                <span><a href=""><i class="far fa-trash-alt"></i></a></span>  
                             </h3>
                         <%}else if(currentUser.type == "3"){%>
-                            <h3 class="card-title">Solo Leveling 
-                                <span><i class="far fa-heart"></i></span>
-                                <span><i class="far fa-edit"></i></span>
+                            <h3 class="card-title"><%=m.title%> 
+                                <span><a href=""><i class="far fa-heart"></i></a></span>
+                                <span><a href="/manga/edit/<%=m._id%>"><i class="far fa-edit"></i></a></span>
                                 </h3>
                             <%}else if(currentUser.type == "1"){%>
-                                <h3 class="card-title">Solo Leveling 
-                                    <span><i class="far fa-heart"></i></span>
+                                <h3 class="card-title"><%=m.title%> 
+                                    <span><a href=""><i class="far fa-heart"></i></a></span>
                                 </h3>
                             <%}%>
                         <%}else{%>
-                            <h3 class="card-title">Solo Leveling </h3>
+                            <h3 class="card-title"><%=m.title%> </h3>
                         <%}%>
 
                    
                     <hr class="my-4">
                     <p class="card-text"><b>Rate: -/10 <br>
-                            <b>Genres:</b> Lorem, Lorem, Lorem, Lorem<br>
-                            <b>Author:</b> Lorem<br>
-                            <b>Painter:</b> Lorem <br>
-                            <b>Origin:</b> Lorem <br>
-                            <b>Reading direction:</b>left-to-right<br>
+                            <b>Genres:</b> <%=m.genres.join() %><br>
+                            <b>Author:</b> <%=m.author %><br>
+                            <b>Painter:</b> <%=m.artists %><br>
+                            <b>Origin:</b> <%=m.origin %><br>
+                            <b>Reading direction:</b> <%=m.reading_direction %><br>
                     </p>
-                    <p class="card-text"><b>Story: </b> Lorem ipsum, dolor sit amet consectetur
-                        adipisicing elit. Minus nesciunt reiciendis ullam
-                        obcaecati a commodi minima impedit amet. Porro
-                        consequatur adipisci eos voluptas alias, ipsam illo
-                        dolore recusandae at dolorem.
+                    <p class="card-text"><b>Story: </b> <%=m.description %>
                     </p>
                     <p class="card-text">
                         <small class="text-muted">Last updated 3 mins ago</small>

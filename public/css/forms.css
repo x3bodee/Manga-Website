@@ -23,6 +23,10 @@ label{
     background-color: #14213D;
 }
 
-#in{
+.hiddenspan{
+    visibility: hidden;
+}
+
+.in{
     color: green;
 }

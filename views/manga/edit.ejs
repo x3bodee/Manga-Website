@@ -3,87 +3,89 @@
 </head>
 
 <div class="container">
-    <form>
+
+    <form method="POST" action="/manga/edit/?id=<%=m._id %>&_method=PUT" >
         <div class="row">
+          
           <div class="col-md-6">
             <label for="title">Title</label>
-            <input type="text" class="form-control" name="title" placeholder="Title">
+            <input type="text" class="form-control" value="<%= m.title %>" name="title" placeholder="Title">
           </div>
+
           <div class="col-md-6">
             <label for="author">Author</label>
-            <input type="text" class="form-control" name="author" placeholder="Author">
+            <input type="text" class="form-control" value="<%= m.author %>" name="author" placeholder="Author">
           </div>
+        
         </div>
         
         <div class="row">
+        
             <div class="col-md-6">
               <label for="other_names">Other Names</label>
-              <input type="text" class="form-control" name="other_names" placeholder="Other Names">
+              <input type="text" class="form-control" value="<%=  m.other_names.join() %>" name="other_names" placeholder="Other Names">
             </div>
+          
             <div class="col-md-6">
                 <label for="artists">Artists</label>
-                <input type="text" class="form-control" name="artists" placeholder="Artists">
+                <input type="text" class="form-control" value="<%= m.artists  %>" name="artists" placeholder="Artists">
             </div>
+        
         </div>
+      
         <div class="form-group">
-            <label for="exampleFormControlTextarea1">Description</label>
-            <textarea class="form-control" name="description" rows="3"></textarea>
+            <label for="description">Description</label>
+            <textarea class="form-control" name="description" rows="3"> <%= m.description %> </textarea>
         </div>
           
         <div class="row">
+      
             <div class="col-md-6">
-                <label for="Origin">Origin</label>
-                <select class="form-control" name="origin">
-                  <option>select origin</option>
-                  <option>manga</option>
-                  <option>manhwa</option>
-                  <option>manhua</option>
-                </select>
+              <label for="reading_direction">Reading Direction</label>
+              <select class="form-control" name="reading_direction">
+                  <% if(m.reading_direction == "Right to Left"){ %>
+                    <option selected value="Right to Left">Right to Left</option>
+                    <option value="Left to Right">Left to Right</option>
+                  <%}else{%>
+                    <option value="Right to Left">Right to Left</option>
+                    <option selected value="Left to Right">Left to Right</option>
+                  <%}%>
+              </select>
             </div>
-        <div class="col-md-6">
-            <label for="geners">Geners</label>
-            <span id="in"></span>
-            <select class="form-control geners" name="geners">
-              <option>Select Geners</option>
-              <option value="Action">Action</option>
-              <option value="Adventure">Adventure</option>
-              <option value="Comedy">Comedy</option>
-              <option value="Crime">Crime</option>
-              <option value="Drama">Drama</option>
-              <option value="Fantasy">Fantasy</option>
-              <option value="Horror">Horror</option>
-              <option value="Magic">Magic</option>
-              <option value="Martial arts">Martial arts</option>
-              <option value="Mystery">Mystery</option>
-              <option value="Romance">Romance</option>
-              <option value="Reincarnation">Reincarnation</option>
-              <option value="Slice of life">Slice of life</option>
-              <option value="School life">School life</option>
-              <option value="Sci fi">Sci fi</option>
-              <option value="Seinen">Seinen</option>
-              <option value="Shounen">Shounen</option>
-              <option value="Superhero">Superhero</option>
-              <option value="Sports">Sports</option>
-              <option value="Tragedy">Tragedy</option>
-              <option value="Survival">Survival</option>
-              <option value="Supernatural">Supernatural</option>
-            </select>
-    </div>
-            
+        
+            <div class="col-md-6">
+                    <label for="Origin">Origin</label>
+                    <select class="form-control" name="origin">
+                     <% if(m.origin == "manga"){ %>
+                        <option selected value="manga">manga</option>
+                        <option value="manhwa">manhwa</option>
+                        <option value="manhua">manhua</option>
+                      <% }else if(m.origin == "manhwa"){ %>
+                        <option value="manga">manga</option>
+                        <option selected value="manhwa">manhwa</option>
+                        <option value="manhua">manhua</option>
+                      <%}else{%>
+                        <option value="manga">manga</option>
+                        <option value="manhwa">manhwa</option>
+                        <option selected value="manhua">manhua</option>
+                      <%}%>
+                    </select>
+            </div>
         </div>
-        <div class="col-md-6">
-            <label for="reading_direction">Reading Direction</label>
-            <select class="form-control" name="reading_direction">
-              <option>select origin</option>
-              <option value="Left-to-Right">Left-to-Right</option>
-              <option value="Right-to-Left">Right-to-Left</option>
-            </select>
+
+        <div class="form-group">
+          <label for="genres">Genres</label>
+          <textarea class="form-control" name="genres" rows="3"> <%= m.genres.join() %> </textarea>
         </div>
-       
+        <div class="col-md-12">
+          <label for="Poster">Poster</label>
+          <input type="text" class="form-control" value="<%= m.poster  %>" name="poster" placeholder="Poster">
+      </div>
+        
         <div class="button-center">
             <button type="submit" class="btn btn-primary submit">Submit</button>
         </div>
         
       </form>
-
 </div>
+<!-- <script src="/js/selected.js"></script> -->
