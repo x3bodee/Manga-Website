@@ -1,0 +1,33 @@
+<head>
+    <link rel="stylesheet" href="/css/forms.css">
+  </head>
+  <div class="container">
+    <form class="form-inline w-50 mx-auto" method="POST" action="">
+         <!-- Username -->
+        <label>Username</label> 
+        <label class="sr-only" for="username">Username</label>
+        <div class="input-group mb-2 mr-sm-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">@</div>
+          </div>
+          <input type="text" class="form-control" value="<%=user.username%>" id="username" name="username" disabled placeholder="Username">
+        </div>
+        <!-- Password -->
+        <label>Password</label> 
+        <label class="sr-only" for="password">PASSWORS</label>
+        <div class="input-group mb-2 mr-sm-2">
+          <input type="password" class="form-control" name="password" value="" id="password" placeholder="PASSWORS"> 
+        </div>
+         <!-- Eamil -->
+        <label>Eamil</label>
+        <label class="sr-only" for="inlineFormInputGroupUsername2">Eamil</label>
+        <div class="input-group mb-2 mr-sm-2">
+            <input type="email" class="form-control" value="<%=user.email%>" id="email" name="email" placeholder="EMAIL">
+        </div>
+        <input type="text" hidden class="form-control" value="<%=user._id%>" id="user_id" name="user_id" placeholder= "Eamil">
+        <div class="button-center mt-4">
+            <button type="submit" class="btn btn-primary submit">Updata</button>
+        </div>
+
+      </form>
+  </div>

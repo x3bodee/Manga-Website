@@ -17,6 +17,10 @@ const userSchema = mongoose.Schema({
         type: String,
         rerequire: true,
     },
+    email:{
+        type: String,
+        rerequire: true,
+    }
 
 }, {
     timestamps: true // means createdAt and updatedAt
