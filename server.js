@@ -49,6 +49,7 @@ app.set('view engine', 'ejs');
 // routes
 app.use(require('./routes/chapter'))
 app.use(require('./routes/Auth'))
+app.use(require('./routes/manga'))
 
 //console.log(process.env.mongoDBURL);
 
@@ -79,10 +80,10 @@ app.get('/manga', (req, res) => {
 
 })
 
-app.get('/manga/add', (req, res) => {
+// app.get('/manga/add', (req, res) => {
 
-  res.render('manga/add')
-})
+//   res.render('manga/add')
+// })
 
 
 app.get('/chapter', (req, res) => {

@@ -22,3 +22,11 @@ label{
 .btn-primary{
     background-color: #14213D;
 }
+
+.hiddenspan{
+    visibility: hidden;
+}
+
+.in{
+    color: green;
+}

@@ -1,0 +1,91 @@
+<head>
+    <link rel="stylesheet" href="/css/forms.css">
+</head>
+
+<div class="container">
+
+    <form method="POST" action="/manga/edit/?id=<%=m._id %>&_method=PUT" >
+        <div class="row">
+          
+          <div class="col-md-6">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" value="<%= m.title %>" name="title" placeholder="Title">
+          </div>
+
+          <div class="col-md-6">
+            <label for="author">Author</label>
+            <input type="text" class="form-control" value="<%= m.author %>" name="author" placeholder="Author">
+          </div>
+        
+        </div>
+        
+        <div class="row">
+        
+            <div class="col-md-6">
+              <label for="other_names">Other Names</label>
+              <input type="text" class="form-control" value="<%=  m.other_names.join() %>" name="other_names" placeholder="Other Names">
+            </div>
+          
+            <div class="col-md-6">
+                <label for="artists">Artists</label>
+                <input type="text" class="form-control" value="<%= m.artists  %>" name="artists" placeholder="Artists">
+            </div>
+        
+        </div>
+      
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" name="description" rows="3"> <%= m.description %> </textarea>
+        </div>
+          
+        <div class="row">
+      
+            <div class="col-md-6">
+              <label for="reading_direction">Reading Direction</label>
+              <select class="form-control" name="reading_direction">
+                  <% if(m.reading_direction == "Right to Left"){ %>
+                    <option selected value="Right to Left">Right to Left</option>
+                    <option value="Left to Right">Left to Right</option>
+                  <%}else{%>
+                    <option value="Right to Left">Right to Left</option>
+                    <option selected value="Left to Right">Left to Right</option>
+                  <%}%>
+              </select>
+            </div>
+        
+            <div class="col-md-6">
+                    <label for="Origin">Origin</label>
+                    <select class="form-control" name="origin">
+                     <% if(m.origin == "manga"){ %>
+                        <option selected value="manga">manga</option>
+                        <option value="manhwa">manhwa</option>
+                        <option value="manhua">manhua</option>
+                      <% }else if(m.origin == "manhwa"){ %>
+                        <option value="manga">manga</option>
+                        <option selected value="manhwa">manhwa</option>
+                        <option value="manhua">manhua</option>
+                      <%}else{%>
+                        <option value="manga">manga</option>
+                        <option value="manhwa">manhwa</option>
+                        <option selected value="manhua">manhua</option>
+                      <%}%>
+                    </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label for="genres">Genres</label>
+          <textarea class="form-control" name="genres" rows="3"> <%= m.genres.join() %> </textarea>
+        </div>
+        <div class="col-md-12">
+          <label for="Poster">Poster</label>
+          <input type="text" class="form-control" value="<%= m.poster  %>" name="poster" placeholder="Poster">
+      </div>
+        
+        <div class="button-center">
+            <button type="submit" class="btn btn-primary submit">Submit</button>
+        </div>
+        
+      </form>
+</div>
+<!-- <script src="/js/selected.js"></script> -->
