@@ -1,0 +1,27 @@
+<head>
+    <link rel="stylesheet" href="/css/forms.css">
+  </head>
+  <div class="container">
+  
+    <form class="form-inline w-50 mx-auto" method="POST" action="">
+
+      <!--  <label>User Id</label> 
+        <label class="sr-only" for="password">User Id</label>-->
+        <div class="input-group mb-2 mr-sm-2">
+          <input hidden class="form-control" value="<%=id%>" name="user_id" id="user_id" placeholder="PASSWORS"> 
+        </div>
+
+        <label>description</label> 
+        <label class="sr-only" for="password">description</label>
+        <div class="input-group mb-2 mr-sm-2">
+          <textarea rows="3" class="form-control" name="description" id="description" placeholder="description">
+          </textarea>
+        </div>
+
+
+        <div class="button-center mt-4">
+            <button type="submit" class="btn btn-primary submit">submit</button>
+        </div>
+     </form>
+  
+  </div>

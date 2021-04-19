@@ -1,0 +1,50 @@
+
+<table class="table text-center mt-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col"> Manga_id</th>
+        <th scope="col">Number</th>
+        <th scope="col">Title</th>
+        <th scope="col">Created_by</th>
+        <th scope="col">Pages</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        
+        <% chapter.forEach(function(chapter){ %>
+         
+      <tr>
+        <th scope="row">1</th>
+        <td><%=chapter. manga_id%></td>
+        <td><%=chapter.number%></td>
+        <td><%=chapter.title%></td>
+        <td><%=chapter.created_by%></td>
+        
+        <td>
+            <% chapter.pages.forEach((page) =>{ %>
+            <a href="<%=page%>">page</a>
+            <%})%>
+
+        </td>
+
+        <td>
+            <a href="/admin/userUpdate?id=<%=chapter._id %>">
+                <button>Update</button>
+            </a>
+        </td>
+
+        <td>
+            <a href="/admin/userDelete?id=<%=chapter._id %>">
+                <button>Delete</button>
+            </a>
+        </td>
+      </tr>
+ 
+      <%})%>
+   
+    </tbody>
+  </table>
