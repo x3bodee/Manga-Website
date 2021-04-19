@@ -1,5 +1,7 @@
-$('.geners').on('change', function() {
-    console.log('select ');
+console.log("hi");
+
+$('.genres').on('change', function() {
+    console.log('in select ');
     alert( this.value );
     let val=this.value
     $('option').each(function() {
