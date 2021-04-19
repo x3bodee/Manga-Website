@@ -20,8 +20,9 @@ router.get('/request/addRequest' , isLoggedin ,  (req ,res ) => {
 // post the data
   router.post('/request/addRequest' , isLoggedin ,  (req ,res ) => { 
 
+    req.body.isClosed = false;
    let newRequest =  new Request(req.body);
- 
+
    newRequest.save()
     .then(()=>{
      console.log("done")
