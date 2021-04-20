@@ -145,6 +145,11 @@ router.put("/manga/edit/", (req, res) => {
 // router.get("/manga/allmanga/", (req, res) => {
 // })
 
+////////////////////////////
+
+router.get('/allmanga',(req,res)=>{
+    res.render('manga/allManga')
+})
 
 module.exports = router;
 
