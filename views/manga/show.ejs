@@ -15,24 +15,24 @@
                 <div class="card-body">
                     <% if(currentUser) { %>
                         <% if(currentUser.type == "2") { %>
-                            <h3 class="card-title"><%=m.title%> 
-                                <span><a href=""><i class="far fa-heart"></i></a></span>
-                                <span><a href="/manga/edit/<%=m._id%>"><i class="far fa-edit"></i></a></span>
-                                <span><a href=""><i class="far fa-trash-alt"></i></a></span>  
-                            </h3>
-                        <%}else if(currentUser.type == "3"){%>
-                            <h3 class="card-title"><%=m.title%> 
-                                <span><a href=""><i class="far fa-heart"></i></a></span>
-                                <span><a href="/manga/edit/<%=m._id%>"><i class="far fa-edit"></i></a></span>
+                                <h3 class="card-title"><%=m.title%> 
+                                    <span><a href=""><i class="far fa-heart"></i></a></span>
+                                    <span><a href="/manga/edit/<%=m._id%>"><i class="far fa-edit"></i></a></span>
+                                    <span><a href=""><i class="far fa-trash-alt"></i></a></span>  
+                                </h3>
+                            <%}else if(currentUser.type == "3"){%>
+                                <h3 class="card-title"><%=m.title%> 
+                                    <span><a href=""><i class="far fa-heart"></i></a></span>
+                                    <span><a href="/manga/edit/<%=m._id%>"><i class="far fa-edit"></i></a></span>
                                 </h3>
                             <%}else if(currentUser.type == "1"){%>
                                 <h3 class="card-title"><%=m.title%> 
                                     <span><a href=""><i class="far fa-heart"></i></a></span>
                                 </h3>
                             <%}%>
-                        <%}else{%>
-                            <h3 class="card-title"><%=m.title%> </h3>
-                        <%}%>
+                    <%}else{%>
+                        <h3 class="card-title"><%=m.title%> </h3>
+                    <%}%>
 
                    
                     <hr class="my-4">
