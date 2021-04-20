@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const methodOverride = require('method-override');
+var mongoose = require('mongoose');
 
 // imoprt Model
 const Chapters = require("../models/Chapter");
@@ -12,15 +13,24 @@ router.use(methodOverride('_method'));
 
 
 // load the form 
-router.get('/chapter/add' , (req ,res ) => {
-
-    res.render('chapter/add')
+router.get('/chapter/add/:id' , (req ,res ) => {
+     
+    var manga_id = req.params.id;
+    var user_id =  req.user._id;
+    console.log(req.params.id)
+    res.render('chapter/add' , {manga_id , user_id})
+    
    
   })
 
   // post the data
   router.post('/chapter/add' , (req ,res ) => {
-
+    
+    console.log("manga , id")
+    console.log(req.body.manga_id)
+    console.log(req.body.created_by)
+   // var id = mongoose.Types.ObjectId(req.body.manga_id.trim());
+    //req.body.manga_id=id;
    let chapterLinks = req.body.pages;
    let arr = chapterLinks.split('\n');
    arr.splice(arr.indexOf(""),1);
@@ -91,6 +101,18 @@ router.get('/chapter/edit/:id' , (req ,res ) => {
        }
    })
 
+})
+
+// delete
+//delete
+router.get("/chapter/delete/:id", (req,res)=>{
+    Chapters.findByIdAndDelete(req.params.id)
+    .then(()=>{
+        res.redirect("/")
+    })
+    .catch(err => {
+        console.log(err);
+    })
 })
 
   
