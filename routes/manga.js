@@ -74,9 +74,13 @@ router.get('/manga/show/:id', (req, res) => {
     console.log(req.params.id);
     Manga.findById(req.params.id)
         .then((m) => {
+            Chapters.find(m.manga_id)
+           .then((chapters)=>{
             console.log(m)
-            res.render("manga/show", { m })
+            res.render("manga/show", { m , chapters })
             console.log("done")
+           })
+           .catch(err=>console.log(err))
         })
         .catch((err) => {
             console.log(err);
