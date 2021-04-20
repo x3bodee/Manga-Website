@@ -41,7 +41,7 @@ router.get('/chapter/add/:id' , (req ,res ) => {
 
    chapter.save()
    .then(()=>{
-    //res.redirect("/article/index")
+    res.redirect("/manga/show/"+req.body.manga_id)
     console.log("done")
 })
    .catch((err)=>{
