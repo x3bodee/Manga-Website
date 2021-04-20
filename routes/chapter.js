@@ -58,7 +58,7 @@ router.get('/chapter/show/:id' , (req ,res ) => {
    Chapters.findById(req.params.id)
    .then((chapter)=>{
        console.log(chapter)
-   res.render("chapter/show" , {chapter})
+      res.render("chapter/show" , {chapter})
     console.log("done")
 })
    .catch((err)=>{
@@ -115,8 +115,51 @@ router.get("/chapter/delete/:id", (req,res)=>{
     })
 })
 
+router.get("/testchapter" , (req,res)=>{
+    //Chapters.find().limit(-2).populate(" manga_id")
+    // .sort({_id:-1}).limit(2)
+    Chapters.find({},{number:1,manga_id:1,  createdAt:1}).sort({_id:-1}).limit(4).populate({path: "manga_id" , select:["title" , "poster" ]})
+    .then((chapter)=>{
+        console.log("this is chapter")
+         console.log(chapter);
+  
+         let result = [];
+         //console.log(chapter[0].manga_id.title)
+        for (let i= 0; i < chapter.length; i++) {
+          //  let x =  chapter.splice(i,1);
+          let arr = [];
+         let x =  chapter[i];
+         console.log("title")
+         console.log(x.manga_id.title)
+          arr.push({chapter_id:x._id , chapter_number:x.number, manga_title:x.manga_id.title,
+             manga_poster:x.manga_id.poster, createAt:x.createdAt});
+             chapter.splice(i,1);
+    
+    
+          for(let j=0; j<chapter.length;j++){ 
+    
+            if(arr[i].manga_title == chapter[j].manga_id.title){
+                 x =  chapter[j];
+                arr.push({chapter_id:x._id , chapter_number:x.number, manga_title:x.manga_id.title,
+                   manga_poster:x.manga_id.poster, createAt:x.createdAt});
+                   chapter.splice(j,1);
+            }
+        }
+        console.log("this arr")
+        console.log(arr)
+        result.push(arr);
+   
+        }  
+        
+      /*  console.log("this result")
+        //console.log(result)
+        result.forEach((r)=>{
+          //  console.log("manga title" +r.manga_id.title);
+            console.log("chapter number" +r.number);
+        })*/
+    })
+})
+
   
   module.exports = router;
 
-
- 
