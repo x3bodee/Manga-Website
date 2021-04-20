@@ -3,9 +3,8 @@ const mongoose = require("mongoose");
 const ChaptersSchema = mongoose.Schema({
 
     manga_id :{
-        /*type: mongoose.Schema.Types.ObjectId , 
-        ref : 'Manga',*/
-        type : Number,
+        type: mongoose.Schema.Types.ObjectId , 
+        ref : 'Manga',
         required : true,
     },
 
@@ -21,7 +20,7 @@ const ChaptersSchema = mongoose.Schema({
 
     created_by :{
         type : String,
-        //required : true,  
+        required : true,  
     },
 
     pages :{

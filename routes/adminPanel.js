@@ -40,19 +40,19 @@ router.post("/admin/userUpdate" , (req,res)=>{
   const newData = {
     username : req.body.username,
     email : req.body.email,
-    type : req.body. type,
+    type : req.body.type,
    
   }
 
+  console.log(newData)
   var id = req.query.id;
-  User.findByIdAndUpdate({_id : id} , {$set : newData} , function(err, result){
-     if(err){
-         console.log(err)
-     }
-     else{
-         res.redirect("/admin/users");
-     }
- })
+  User.findByIdAndUpdate({_id : id} , {$set : newData})
+  .then((user)=>{
+      console.log("done")
+      res.redirect("/admin/users")
+      console.log(user)
+  })
+  .catch(err=>console.log(err))
 
 })
 
@@ -82,7 +82,7 @@ router.get('/admin/chapters' , (req ,res ) => {
 
   
 // update chapter by admin
-router.get("/admin/userUpdate" , (req, res) =>{
+/*router.get("/admin/userUpdate" , (req, res) =>{
      
   User.findById(req.query.id)
   .then((user)=>{
@@ -113,7 +113,7 @@ User.findByIdAndUpdate({_id : id} , {$set : newData} , function(err, result){
    }
 })
 
-})
+})*/
 
 
 module.exports = router;

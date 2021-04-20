@@ -8,6 +8,17 @@ const RequestSchema = mongoose.Schema({
     description: {
         type: String,
         require: true,
+    },
+
+    isClosed: {
+        type: Boolean,
+        require: true,
+    },
+    status: {
+        type: Boolean,
+    },
+    response:{
+        type: String,
     }
 
 }, {
