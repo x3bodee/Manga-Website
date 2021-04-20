@@ -118,46 +118,51 @@ router.get("/chapter/delete/:id", (req,res)=>{
 router.get("/testchapter" , (req,res)=>{
     //Chapters.find().limit(-2).populate(" manga_id")
     // .sort({_id:-1}).limit(2)
-    Chapters.find({},{number:1,manga_id:1,  createdAt:1}).sort({_id:-1}).limit(4).populate({path: "manga_id" , select:["title" , "poster" ]})
+    Chapters.find({},{number:1,manga_id:1,  createdAt:1}).sort({_id:-1}).limit(10).populate({path: "manga_id" , select:["title" , "poster" ]})
     .then((chapter)=>{
-        console.log("this is chapter")
-         console.log(chapter);
-  
-         let result = [];
-         //console.log(chapter[0].manga_id.title)
-        for (let i= 0; i < chapter.length; i++) {
-          //  let x =  chapter.splice(i,1);
-          let arr = [];
-         let x =  chapter[i];
-         console.log("title")
-         console.log(x.manga_id.title)
-          arr.push({chapter_id:x._id , chapter_number:x.number, manga_title:x.manga_id.title,
-             manga_poster:x.manga_id.poster, createAt:x.createdAt});
-             chapter.splice(i,1);
-    
-    
-          for(let j=0; j<chapter.length;j++){ 
-    
-            if(arr[i].manga_title == chapter[j].manga_id.title){
-                 x =  chapter[j];
-                arr.push({chapter_id:x._id , chapter_number:x.number, manga_title:x.manga_id.title,
-                   manga_poster:x.manga_id.poster, createAt:x.createdAt});
-                   chapter.splice(j,1);
-            }
-        }
-        console.log("this arr")
-        console.log(arr)
-        result.push(arr);
-   
-        }  
+        chapter.forEach((ch)=>{
+            Object.assign(ch, {flag: false});
+        });
         
-      /*  console.log("this result")
-        //console.log(result)
+        // console.log("print all chapters")
+        //console.log(chapter);
+         let result = [];
+         //console.log("---------------------------------------------------")
+        chapter.forEach((ch,i)=>{
+            if(ch.flag == false){
+            let arr = [];
+            let x =  ch;
+            arr.push({chapter_id:x._id , chapter_number:x.number, manga_title:x.manga_id.title,
+                manga_poster:x.manga_id.poster, createAt:x.createdAt});
+            
+            ch.flag=true;
+            //console.log("now create "+arr[0].manga_title+" array");
+            for(let j=0; j<chapter.length;j++){ 
+    
+                if(arr[0].manga_title == chapter[j].manga_id.title && chapter[j].flag==false){
+                    let x =  chapter[j];
+                    arr.push({chapter_id:x._id , chapter_number:x.number, manga_title:x.manga_id.title,
+                       manga_poster:x.manga_id.poster, createAt:x.createdAt});
+                       //chapter.splice(j,1);
+                       chapter[j].flag=true;
+                       //console.log("add this "+x.manga_id.title+" chapter to this "+arr[0].manga_title+" manga array");
+                }
+            }
+            //console.log("Manga Chapter for "+arr[0].manga_title);
+            //console.log(arr);
+            result.push(arr);
+        }
+        })// end of forEach
+        console.log("----------------------------------------")
+        console.log("print sorted manga chapters")
+        
         result.forEach((r)=>{
-          //  console.log("manga title" +r.manga_id.title);
-            console.log("chapter number" +r.number);
-        })*/
+            r.sort((a, b) => parseFloat(b.chapter_number) - parseFloat(a.chapter_number));
+        })
+        console.log(result)
+        res.render("/",{result});
     })
+    .catch(err=>console.log(err));
 })
 
   

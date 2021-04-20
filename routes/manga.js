@@ -72,11 +72,12 @@ router.post('/manga/add', isLoggedIn,(req, res) => {
 // show
 router.get('/manga/show/:id', (req, res) => {
     console.log(req.params.id);
-    Manga.findById(req.params.id)
+    let manga_id=req.params.id;
+    Manga.findById(manga_id)
         .then((m) => {
-            Chapters.find(m.manga_id)
+            Chapters.find({manga_id:manga_id})
            .then((chapters)=>{
-            console.log(m)
+            console.log(chapters)
             res.render("manga/show", { m , chapters })
             console.log("done")
            })
