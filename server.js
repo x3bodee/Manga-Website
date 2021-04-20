@@ -94,5 +94,3 @@ app.get('/chapter', (req, res) => {
   res.render('chapter/show')
 
 })
-
-
