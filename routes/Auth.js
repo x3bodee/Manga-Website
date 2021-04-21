@@ -20,6 +20,8 @@ router.get("/signup", (req, res) => {
 
 // HTTP POST - Signup Route - To save the data
 router.post("/signup", (req, res) => {
+  req.body.username=req.body.username.trim();
+  req.body.email=req.body.email.trim();
   let user = new User(req.body);
   console.log(req.body)
   User.count({
@@ -27,14 +29,11 @@ router.post("/signup", (req, res) => {
     })
     .then((count) => {
       if (count > 0) {
-        throw new Error("username already exists!!")
+        res.redirect('/signup');
         //req.flash("error", "username already exists!!");
 
-      }
-      //     console.log(" INCOUNT ")
-    });
-  //   console.log(" END COUNT")
-  let hash = bcrypt.hashSync(req.body.password, salt);
+      }else{
+        let hash = bcrypt.hashSync(req.body.password, salt);
   user.password = hash;
   user
     .save()
@@ -48,6 +47,12 @@ router.post("/signup", (req, res) => {
       res.send("ERRROR!!!");
     });
 
+
+      }
+      //     console.log(" INCOUNT ")
+    });
+  //   console.log(" END COUNT")
+  
 });
 
 // HTTP GET - Signin Route - To load the signin form
@@ -95,7 +100,7 @@ router.post('/profile', isLoggedin, (req, res) => {
   let password = req.user.password;
   if (req.body.email != null && req.body.email != undefined && req.body.email != "") {
     if (req.body.email != email) {
-      updatedata.email = req.body.email
+      updatedata.email = req.body.email.trim();
     }
   }
   let hash = bcrypt.hashSync(req.body.password, salt);
