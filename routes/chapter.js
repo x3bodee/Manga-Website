@@ -20,8 +20,6 @@ router.get('/chapter/add/:id' , (req ,res ) => {
     var user_id =  req.user._id;
     console.log(req.params.id)
     res.render('chapter/add' , {manga_id , user_id})
-    
-   
   })
 
   // post the data
@@ -58,7 +56,7 @@ router.get('/chapter/add/:id' , (req ,res ) => {
    
 })
 
-// show
+// chapter show
 router.get('/chapter/show/:id' , (req ,res ) => {
 
    // console.log(req.params.id);
@@ -75,7 +73,7 @@ router.get('/chapter/show/:id' , (req ,res ) => {
       
 })
 
-// edit 
+// edit chapter
 router.get('/chapter/edit/:id' , (req ,res ) => {
     
     Chapters.findById(req.params.id)
@@ -110,8 +108,7 @@ router.get('/chapter/edit/:id' , (req ,res ) => {
 
 })
 
-// delete
-//delete
+//delete chapter
 router.get("/chapter/delete/:id", (req,res)=>{
     Chapters.findByIdAndDelete(req.params.id)
     .then(()=>{
@@ -123,8 +120,10 @@ router.get("/chapter/delete/:id", (req,res)=>{
 })
 
 router.get("/testchapter" , (req,res)=>{
+
     //Chapters.find().limit(-2).populate(" manga_id")
     // .sort({_id:-1}).limit(2)
+
     Manga.find({}).sort({ _id: -1 }).limit(4)
         .then(manga => {
             Chapters.find({}, { number: 1, manga_id: 1, createdAt: 1 }).sort({ _id: -1 }).limit(50).populate({ path: "manga_id", select: ["title", "poster"] })

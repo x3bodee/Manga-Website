@@ -1,0 +1,38 @@
+<section class="all-manga mt-4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-10 col-md-6 col-xl-4 mx-auto">
+                <form action="" method="POST">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                        <button  type="submit"><i class="fas fa-search fa-lg search-icon"></i></button>
+                       
+                        </span>
+                        <input type="text" name="Search" class="form-control" id="search-item" placeholder="manga...">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--end row-->
+
+
+
+        <!-- row-->
+        <div class="row grid mt-2 text-center mx-auto ">
+            <%result.forEach((r)=>{%> 
+
+            <div class="col-12 mx-auto col-md-4 col-xl-3 mt-2 ">
+                <div class="manga-poster" style="background-image: url('<%=r.poster%>')">
+                    <div class="manga-title">
+                        <h5><%=r.title%></h5>
+                    </div>
+                </div>
+            </div>
+        <%})%>
+
+            </div>
+           
+    </div>
+
+</section>

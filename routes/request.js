@@ -20,12 +20,14 @@ router.get('/request/addRequest' , isLoggedin ,  (req ,res ) => {
 // post the data
   router.post('/request/addRequest' , isLoggedin ,  (req ,res ) => { 
 
+    req.body.description = req.body.description.trim();
     req.body.isClosed = false;
    let newRequest =  new Request(req.body);
 
    newRequest.save()
     .then(()=>{
      console.log("done")
+     res.render("home/home");
  })
     .catch((err)=>{
      console.log(err);
@@ -33,8 +35,5 @@ router.get('/request/addRequest' , isLoggedin ,  (req ,res ) => {
  })
 
   })
-
-
- 
 
   module.exports = router;

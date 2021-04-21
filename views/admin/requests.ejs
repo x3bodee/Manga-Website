@@ -1,0 +1,98 @@
+
+<table class="table text-center mx-auto mt-4 w-50">
+    <thead>
+      <tr>
+       <!-- <th scope="col">#</th>-->
+        <th scope="col">Username</th>
+        <th scope="col">Description</th>
+        <th scope="col">response</th>
+        <th scope="col">Status</th>
+        <th scope="col">Submit</th>
+      </tr>
+
+    </thead>
+    <tbody>
+
+    <% requset.forEach(function(requset){ %>
+        <%if(requset.isClosed == false){%>
+    <tr>
+        <form method="POST" action="/admin/requests/?request_id=<%=requset._id %>">
+            <td>
+                <input type="text" disabled class="form-control"  name="username" value="<%=requset.user_id.username%>">
+                <input type="text"  hidden class="form-control"  name="user_id" value="<%=requset.user_id._id%>">
+            </td>
+
+            <td>
+                <input type="text" disabled class="form-control"  name="description" value="<%=requset.description%>">
+            </td>
+
+            <td>
+                <input type="text"  class="form-control"  name="response" value="<%=requset.response%>">
+            </td>
+
+            <td>
+                <select class="form-control" name="status">
+                  <option selected="selected" value="select">Select</option>
+                  <option value="true">Accept</option>
+                  <option value="false">Deny</option>
+               
+                </select>
+            </td>
+
+            <td>
+                <a href="#"><button class="mt-1">sumbit</button></a>
+            </td>
+
+        </form>
+    </tr>
+    <%}%>
+    <%})%>
+   
+    </tbody>
+  </table>
+
+  <!----------------------------------------------------------------->
+
+  <table class="table text-center mx-auto mt-5 w-50">
+    <thead>
+      <tr>
+       <!--<th scope="col">#</th>-->
+        <th scope="col">Username</th>
+        <th scope="col">Description</th>
+        <th scope="col">response</th>
+        <th scope="col">Status</th>
+  
+      </tr>
+    </thead>
+
+    <tbody>
+
+        <% requset.forEach(function(requset){ %>
+            <%if(requset.isClosed == true){%>
+        <tr>
+            <form>
+                <td>
+                    <input type="text" disabled  class="form-control"  name="username" value="<%=requset.user_id.username%>">
+                </td>
+    
+                <td>
+                    <input type="text" disabled  class="form-control"  name="username" value="<%=requset.description%>">
+                </td>
+
+                <td>
+                    <input type="text" disabled  class="form-control"  name="response" value="<%=requset.response%>">
+                </td>
+    
+                <td>
+                    <input type="text" disabled  class="form-control"  name="status" value="<%=requset.status%>">
+                </td>
+
+    
+            </form>
+        </tr>
+        <%}%>
+        <%})%>
+
+
+    </tbody>
+    </table>
