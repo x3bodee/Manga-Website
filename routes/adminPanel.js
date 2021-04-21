@@ -1,15 +1,17 @@
 const express = require("express");
 const router = express.Router();
+var mongoose = require('mongoose');
 
 // imoprt Model
 const User = require("../models/User");
 const Chapter = require("../models/Chapter");
+const Request = require("../models/Request");
 
 
 // Grab the form data
 router.use(express.urlencoded({extended : true}));
 
-// users
+// users data
 router.get('/admin/users' , (req ,res ) => {
 
   User.find()
@@ -22,21 +24,8 @@ router.get('/admin/users' , (req ,res ) => {
    
   })
 
-// update user by admin
-  router.get("/admin/userUpdate" , (req, res) =>{
-     
-    User.findById(req.query.id)
-    .then((user)=>{
-        res.render("admin/userUpdate" , {user})
-    })
-    .catch((err)=>{
-        console.log(err);
-        res.send("Error");
-    }) 
-
-  })
-
-router.post("/admin/userUpdate" , (req,res)=>{
+  // updata user data
+router.post("/admin/userss" , (req,res)=>{
   const newData = {
     username : req.body.username,
     email : req.body.email,
@@ -57,7 +46,9 @@ router.post("/admin/userUpdate" , (req,res)=>{
 })
 
 // delete user
-router.get("/admin/userDelete", (req,res)=>{
+router.post("/admin/userDelete", (req,res)=>{
+  console.log("delete")
+  console.log(req.body.username)
   User.findByIdAndDelete(req.query.id)
   .then(()=>{
       res.redirect("/admin/users")
@@ -67,7 +58,7 @@ router.get("/admin/userDelete", (req,res)=>{
   })
 })
 
-// chapter
+// chapters data
 router.get('/admin/chapters' , (req ,res ) => {
 
   Chapter.find()
@@ -81,39 +72,51 @@ router.get('/admin/chapters' , (req ,res ) => {
   })
 
   
-// update chapter by admin
-/*router.get("/admin/userUpdate" , (req, res) =>{
-     
-  User.findById(req.query.id)
-  .then((user)=>{
-      res.render("admin/userUpdate" , {user})
+// requset
+router.get('/admin/requests' , (req ,res ) => {
+
+  Request.find().populate({path : "user_id" , select:["username"]})
+   .then(requset =>{
+    console.log(requset)
+     res.render("admin/requests" , {requset})
   })
-  .catch((err)=>{
-      console.log(err);
-      res.send("Error");
-  }) 
+  .catch(err =>{
+      console.log(err)
+  })
+   
+  })
 
-})
+ // update request
+ router.post('/admin/requests' , (req ,res ) => { 
+   console.log("id 111")
+  let request_id = req.query.request_id;
+ // console.log(request_id);
 
-router.post("/admin/userUpdate" , (req,res)=>{
-const newData = {
-  username : req.body.username,
-  email : req.body.email,
-  type : req.body. type,
- 
-}
+  const newData = {
+    isClosed : true,
+    response : req.body.response,
+    status :req.body.status
+  };
 
-var id = req.query.id;
-User.findByIdAndUpdate({_id : id} , {$set : newData} , function(err, result){
-   if(err){
-       console.log(err)
-   }
-   else{
-       res.redirect("/admin/users");
-   }
-})
-
-})*/
-
+  Request.findByIdAndUpdate({_id : request_id } , {$set : newData})
+  .then((user)=>{
+     // console.log("done")
+      if(req.body.status){
+      //  console.log("if done")
+        User.findByIdAndUpdate({_id : req.body.user_id}, {$set :{type : "3"}})
+        .then(user=>{
+          res.redirect("/admin/requests")
+        })
+        .catch(err =>{
+          console.log(err)
+      })
+      }else{
+        res.redirect("/admin/requests")
+      }
+  })
+  .catch(err=>console.log(err))
+ })
 
 module.exports = router;
+
+
