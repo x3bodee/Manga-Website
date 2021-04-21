@@ -165,6 +165,24 @@ router.get('/allmanga',(req,res)=>{
     
 })
 
+//search manga
+router.post('/findmanga',(req,res)=>{
+console.log("search")
+console.log(req.body)
+let Search=req.body.Search;
+Manga.find({ title : {$regex: Search }})
+ .then((result) => {
+    console.log(result)
+    res.render('manga/findmanga',{result})
+})
+.catch((err) => {
+    console.log(err);
+   
+})
+ 
+
+})
+    
 
 
 
