@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const methodOverride = require('method-override');
 var mongoose = require('mongoose');
-
+const moment = require('moment');
 // imoprt Model
 const Chapters = require("../models/Chapter");
 const Manga = require("../models/Manga");
@@ -119,7 +119,7 @@ router.get("/chapter/delete/:id", (req,res)=>{
     })
 })
 
-router.get("/testchapter" , (req,res)=>{
+router.get("/" , (req,res)=>{
 
     //Chapters.find().limit(-2).populate(" manga_id")
     // .sort({_id:-1}).limit(2)
@@ -194,7 +194,7 @@ router.get("/testchapter" , (req,res)=>{
                     })
                     console.log(newChapters)
                     console.log("Done")
-                    res.render("home/home",{newChapters,manga});
+                    res.render("home/home",{newChapters,manga ,moment});
                 })
                 .catch(err => console.log(err));
     })

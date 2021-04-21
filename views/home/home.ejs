@@ -57,7 +57,7 @@
                         <h5> <i class="fas fa-book-open"></i> <%= manga[0].title%></h5>
                         <div class="chapter-name-time">
                             <p> <i class="fas fa-circle"></i> ch.186</p>
-                            <p>54 minutes ago</p>
+                            <p> Created:<%= moment(manga[0].createdAt).fromNow() %></p>
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
 
                         <div class="chapter-name-time">
                             <p> <a href="/chapter/show/<%= newChapters[0].chapters_id[0]%>"><i class="fas fa-circle"></i> ch.<%= newChapters[0].chapters_number[0]%></a></p>
-                            <p>54 minutes ago</p>
+                            <p> Created: <%= moment(newChapters[0].createdAt).fromNow() %></p>
                         </div>
                     </div>
                 </div>

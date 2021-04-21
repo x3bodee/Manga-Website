@@ -18,12 +18,14 @@
                                 <h3 class="card-title"><%=m.title%> 
                                     <span><a href=""><i class="far fa-heart"></i></a></span>
                                     <span><a href="/manga/edit/<%=m._id%>"><i class="far fa-edit"></i></a></span>
+                                    <span><a href="/chapter/add/<%=m._id%>"><i class="fas fa-plus-square"></i></a></span>
                                     <span><a href=""><i class="far fa-trash-alt"></i></a></span>  
                                 </h3>
                             <%}else if(currentUser.type == "3"){%>
                                 <h3 class="card-title"><%=m.title%> 
                                     <span><a href=""><i class="far fa-heart"></i></a></span>
                                     <span><a href="/manga/edit/<%=m._id%>"><i class="far fa-edit"></i></a></span>
+                                    <span><a href="/chapter/add/<%=m._id%>"><i class="fas fa-plus-square"></i></a></span>
                                 </h3>
                             <%}else if(currentUser.type == "1"){%>
                                 <h3 class="card-title"><%=m.title%> 
@@ -45,10 +47,16 @@
                     </p>
                     <p class="card-text"><b>Story: </b> <%=m.description %>
                     </p>
+                    <% if(chapters[0]!= null && chapters[0]!= undefined ) { %>
+                    
                     <p class="card-text">
-                        <small class="text-muted">Last updated 3 mins ago</small>
+                        <small class="text-muted">Chapter Updated <%= moment(chapters[0].createdAt).fromNow() %></small>
                     </p>
-                        
+                    <%}else{%> 
+                        <p class="card-text">
+                            <small class="text-muted">Manga Created <%= moment(m.createdAt).fromNow() %></small>
+                        </p>
+                        <%}%>
                 </div>
             </div>
         </div>
