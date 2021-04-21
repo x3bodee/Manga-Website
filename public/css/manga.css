@@ -47,3 +47,46 @@
 .mx-auto{
     margin: 0 auto;
 }
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    background-color: #14213D; 
+    /*border: 1px solid #14213D;  */
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    color:  #14213D; 
+}
+
+.ch-icon{
+    display: flex;
+}
+
+.ch-number{
+    background-color: #14213D; 
+    color : white;
+}
+
+.ch-number:hover{
+    color : white;
+}
+
+.ch-edit{
+    border: 1px solid #FCA311;
+    background-color: #FCA311;
+    padding: 0 10px;
+     color: white;
+}
+
+.ch-delete{
+    border: 1px solid red;
+    background-color: red;
+    padding: 0 10px;
+    color: white;
+  
+}

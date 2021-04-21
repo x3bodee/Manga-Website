@@ -17,7 +17,7 @@ router.use(express.urlencoded({extended : true}));
 router.use(methodOverride('_method'));
 
 
-// load the form 
+// load the add chapter form 
 router.get('/chapter/add/:id' , canEdit ,(req ,res ) => {
      
     var manga_id = req.params.id;
@@ -29,12 +29,7 @@ router.get('/chapter/add/:id' , canEdit ,(req ,res ) => {
   // post the data
   router.post('/chapter/add' , canEdit ,(req ,res ) => {
     
-//     console.log("manga , id")
-//     console.log(req.body.manga_id)
-//     console.log(req.body.created_by)
-//    // var id = mongoose.Types.ObjectId(req.body.manga_id.trim());
-//     //req.body.manga_id=id;
-   let chapterLinks = req.body.pages;
+  let chapterLinks = req.body.pages;
   req.body.title=req.body.title.trim();
   console.log("chapter links: "+chapterLinks);
    let arr = chapterLinks.split('\n');
@@ -68,7 +63,6 @@ router.get('/chapter/show/:id' , (req ,res ) => {
    .then((chapter)=>{
        console.log(chapter)
       res.render("chapter/show" , {chapter})
-    console.log("done")
 })
    .catch((err)=>{
     console.log(err);
@@ -80,16 +74,19 @@ router.get('/chapter/show/:id' , (req ,res ) => {
 // edit chapter
 router.get('/chapter/edit/:id' , canEdit , (req ,res ) => {
     
+    console.log(req.params.id)
+    var id = req.user._id;
     Chapters.findById(req.params.id)
     .then((chapter)=>{
        // console.log(chapter)
-        res.render("chapter/edit" , {chapter})
+        res.render("chapter/edit" , {chapter, id})
     })
        .catch((err)=>{
         console.log(err);
         res.send("Error");
     })
   })
+
 
 
   router.put("/chapter/edit/" , canEdit , (req,res)=>{
@@ -106,7 +103,7 @@ router.get('/chapter/edit/:id' , canEdit , (req ,res ) => {
            console.log(err)
        }
        else{
-           res.redirect("/");
+           res.redirect("/chapter/show/" + req.body.id);
        }
    })
 
@@ -116,7 +113,7 @@ router.get('/chapter/edit/:id' , canEdit , (req ,res ) => {
 router.get("/chapter/delete/:id", canDelete ,(req,res)=>{
     Chapters.findByIdAndDelete(req.params.id)
     .then(()=>{
-        res.redirect("/")
+        res.redirect("/manga/show")
     })
     .catch(err => {
         console.log(err);

@@ -44,6 +44,8 @@ app.use(flash());
      next();
  })
 
+app.set("layout admin", false);
+
 app.set('view engine', 'ejs');
 
 // routes
