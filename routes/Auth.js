@@ -29,14 +29,17 @@ router.post("/signup", (req, res) => {
     })
     .then((count) => {
       if (count > 0) {
+        console.log("user exist");
         res.redirect('/signup');
         //req.flash("error", "username already exists!!");
 
       }else{
+        console.log("creating the user");
         let hash = bcrypt.hashSync(req.body.password, salt);
         user.password = hash;
         user.save()
         .then(() => {
+          console.log("now I am sending you back");
           passport.authenticate("local", {
             successRedirect: "/",
             failureRedirect: "/auth/signup"
@@ -49,7 +52,7 @@ router.post("/signup", (req, res) => {
       
       //     console.log(" INCOUNT ")
     })
-    .catch((err)=>{res.send(err)})
+    .catch((err)=>{res.send("error in count username "+err)})
   //   console.log(" END COUNT")
   
 });
