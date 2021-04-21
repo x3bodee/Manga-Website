@@ -32,8 +32,18 @@ router.get('/manga/add', isLoggedIn,(req, res) => {
 router.post('/manga/add', isLoggedIn,(req, res) => {
     let genres = req.body.genres.split(',');
     let other_names =req.body.other_names.split(',');
+    for (let i = 0; i < genres.length; i++) {
+        genres[i]=genres[i].trim();
+    }
+    for (let i = 0; i < other_names.length; i++) {
+        other_names[i]=other_names[i].trim();
+    }
     req.body.genres = genres;
     req.body.other_names = other_names;
+    req.body.title = req.body.title.trim();
+    req.body.author = req.body.author.trim();
+    req.body.poster = req.body.poster.trim();
+    req.body.artists = req.body.artists.trim();
     console.log(req.body.user_id)
     var id = mongoose.Types.ObjectId(req.body.user_id.trim());
     req.body.user_id=id;
@@ -50,9 +60,9 @@ router.post('/manga/add', isLoggedIn,(req, res) => {
         res.redirect('/manga/add')
     }else{
         manga.save()
-     .then(()=>{
+     .then((m)=>{
       console.log("done")
-      res.redirect('/');
+      res.redirect('/manga/show/'+m._id);
   })
      .catch((err)=>{
       console.log(err);

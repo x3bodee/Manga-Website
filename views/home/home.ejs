@@ -44,7 +44,7 @@
     <div class="container">
         <div class="row">
             <div class="col-10 mx-auto text-center">
-                <h1>New Chapters</h1>
+                <h1>Latest  Chapters</h1>
             </div>
         </div>
 
@@ -52,9 +52,9 @@
             <!--col 1-->
             <div class="col-12 mx-auto col-sm-6 col-xl-3 mb-3 ">
                 <div class="chapter">
-                    <img src="img/king.jpg" alt="">
+                    <img src="<%= manga[0].poster%>" alt="">
                     <div class="chapter-info">
-                        <h5> <i class="fas fa-book-open"></i> Attack on Titan</h5>
+                        <h5> <i class="fas fa-book-open"></i> <%= manga[0].title%></h5>
                         <div class="chapter-name-time">
                             <p> <i class="fas fa-circle"></i> ch.186</p>
                             <p>54 minutes ago</p>
@@ -66,12 +66,13 @@
             <!--col 2-->
             <div class="col-12 mx-auto col-sm-6 col-xl-3 mb-3 ">
                 <div class="chapter">
-                    <img src="img/one.png" alt="">
+                    
+                    <img src="<%= newChapters[0].manga_poster%>" alt="">
                     <div class="chapter-info">
-                        <h5> <i class="fas fa-book-open"></i> Attack on Titan</h5>
+                        <h5> <i class="fas fa-book-open"></i> <%= newChapters[0].manga_title%></h5>
 
                         <div class="chapter-name-time">
-                            <p> <i class="fas fa-circle"></i> ch.186</p>
+                            <p> <a href="/chapter/show/<%= newChapters[0].chapters_id[0]%>"><i class="fas fa-circle"></i> ch.<%= newChapters[0].chapters_number[0]%></a></p>
                             <p>54 minutes ago</p>
                         </div>
                     </div>
@@ -107,7 +108,7 @@
                 </div>
             </div>
             <!-- use this -->
-            <div class="col-12  col-sm-12 col-md-6 col-xl-3 mb-3">
+            <!-- <div class="col-12  col-sm-12 col-md-6 col-xl-3 mb-3">
                 <div class="chapter">
                     <img src="img/solo.jpg" alt="">
                     <div class="chapter-info">
@@ -119,13 +120,9 @@
                     </div>
                 </div>
             </div>
-            
-            
-
-            
+             -->
         </div>
         <!--end first row-->
-
         <!------------------------------------------->
         <div class="row ">
             <!--col 1-->

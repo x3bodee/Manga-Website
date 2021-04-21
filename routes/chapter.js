@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 
 // imoprt Model
 const Chapters = require("../models/Chapter");
+const Manga = require("../models/Manga");
 
 // Grab the form data
 router.use(express.urlencoded({extended : true}));
@@ -24,12 +25,21 @@ router.get('/chapter/add/:id' , (req ,res ) => {
   // post the data
   router.post('/chapter/add' , (req ,res ) => {
     
-    //console.log("manga , id")
-    //console.log(req.body.manga_id)
-    //console.log(req.body.created_by)
+//     console.log("manga , id")
+//     console.log(req.body.manga_id)
+//     console.log(req.body.created_by)
+//    // var id = mongoose.Types.ObjectId(req.body.manga_id.trim());
+//     //req.body.manga_id=id;
    let chapterLinks = req.body.pages;
+  req.body.title=req.body.title.trim();
+  console.log("chapter links: "+chapterLinks);
    let arr = chapterLinks.split('\n');
-   arr.splice(arr.indexOf(""),1);
+   if (arr.includes('')) {
+       arr.splice(arr.indexOf(""),1);
+   }
+   for (let i = 0; i < arr.length; i++) {
+       arr[i]=arr[i].trim();
+    }
 
    req.body.pages = arr;
   let chapter =  new Chapters(req.body);
@@ -113,53 +123,83 @@ router.get("/testchapter" , (req,res)=>{
 
     //Chapters.find().limit(-2).populate(" manga_id")
     // .sort({_id:-1}).limit(2)
-    Chapters.find({},{number:1,manga_id:1,  createdAt:1}).sort({_id:-1}).limit(10).populate({path: "manga_id" , select:["title" , "poster" ]})
-    .then((chapter)=>{
-        chapter.forEach((ch)=>{
-            Object.assign(ch, {flag: false});
-        });
-        
-        // console.log("print all chapters")
-        //console.log(chapter);
-         let result = [];
-         //console.log("---------------------------------------------------")
-        chapter.forEach((ch,i)=>{
-            if(ch.flag == false){
-            let arr = [];
-            let x =  ch;
-            arr.push({chapter_id:x._id , chapter_number:x.number, manga_title:x.manga_id.title,
-                manga_poster:x.manga_id.poster, createAt:x.createdAt});
-            
-            ch.flag=true;
-            //console.log("now create "+arr[0].manga_title+" array");
-            for(let j=0; j<chapter.length;j++){ 
-    
-                if(arr[0].manga_title == chapter[j].manga_id.title && chapter[j].flag==false){
-                    let x =  chapter[j];
-                    arr.push({chapter_id:x._id , chapter_number:x.number, manga_title:x.manga_id.title,
-                       manga_poster:x.manga_id.poster, createAt:x.createdAt});
-                       //chapter.splice(j,1);
-                       chapter[j].flag=true;
-                       //console.log("add this "+x.manga_id.title+" chapter to this "+arr[0].manga_title+" manga array");
-                }
-            }
-            //console.log("Manga Chapter for "+arr[0].manga_title);
-            //console.log(arr);
-            result.push(arr);
-        }
 
-        })// end of forEach
-        console.log("----------------------------------------")
-        console.log("print sorted manga chapters")
-        
-        result.forEach((r)=>{
-            r.sort((a, b) => parseFloat(b.chapter_number) - parseFloat(a.chapter_number));
-        })
-        console.log(result)
-        res.render("/",{result});
+    Manga.find({}).sort({ _id: -1 }).limit(4)
+        .then(manga => {
+            Chapters.find({}, { number: 1, manga_id: 1, createdAt: 1 }).sort({ _id: -1 }).limit(50).populate({ path: "manga_id", select: ["title", "poster"] })
+                .then((chapter) => {
+                    chapter.forEach((ch) => {
+                        Object.assign(ch, { flag: false });
+                    });
 
+                    // console.log("print all chapters")
+                    //console.log(chapter);
+                    let result = [];
+                    // 1 1 2 1 2 3 1 3
+                    //console.log("---------------------------------------------------")
+                    // sort
+                    chapter.forEach((ch, i) => {
+                        if (ch.flag == false) {
+                            let arr = [];
+                            let x = ch;
+                            arr.push({
+                                chapter_id: x._id, chapter_number: x.number, manga_title: x.manga_id.title,
+                                manga_poster: x.manga_id.poster, createAt: x.createdAt
+                            });
+
+                            ch.flag = true;
+                            //console.log("now create "+arr[0].manga_title+" array");
+                            for (let j = 0; j < chapter.length; j++) {
+
+                                if (arr[0].manga_title == chapter[j].manga_id.title && chapter[j].flag == false) {
+                                    let x = chapter[j];
+                                    arr.push({
+                                        chapter_id: x._id, chapter_number: x.number, manga_title: x.manga_id.title,
+                                        manga_poster: x.manga_id.poster, createAt: x.createdAt
+                                    });
+                                    //chapter.splice(j,1);
+                                    chapter[j].flag = true;
+                                }
+                            }
+                            result.push(arr);
+                        }
+                    })// end of forEach
+                    console.log("----------------------------------------")
+                    console.log("print sorted manga chapters")
+
+                    result.forEach((r) => {
+                        r.sort((a, b) => parseFloat(b.chapter_number) - parseFloat(a.chapter_number));
+                    })
+
+                    let newChapters = [];
+
+                    result.forEach((manga) => {
+                        let t = {
+                            manga_title: "",
+                            manga_poster: "",
+                            createAt: "",
+                            chapters_number: [],
+                            chapters_id: []
+                        }
+                        manga.forEach((chapter, i) => {
+                            if (i == 0) {
+                                t.manga_title = chapter.manga_title;
+                                t.manga_poster = chapter.manga_poster;
+                                t.createAt = chapter.createAt;
+                            }
+                            t.chapters_number.push(chapter.chapter_number)
+                            t.chapters_id.push(chapter.chapter_id)
+                        })
+                        newChapters.push(t);
+                    })
+                    console.log(newChapters)
+                    console.log("Done")
+                    res.render("home/home",{newChapters,manga});
+                })
+                .catch(err => console.log(err));
     })
     .catch(err=>console.log(err));
+    
 })
 
   
