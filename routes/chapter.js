@@ -2,10 +2,14 @@ const express = require("express");
 const router = express.Router();
 const methodOverride = require('method-override');
 var mongoose = require('mongoose');
-
+const moment = require('moment');
 // imoprt Model
 const Chapters = require("../models/Chapter");
 const Manga = require("../models/Manga");
+
+const isLoggedIn = require("../helper/isLoggedin");
+const canEdit = require("../helper/canEdit");
+const canDelete = require("../helper/canDelete");
 
 // Grab the form data
 router.use(express.urlencoded({extended : true}));
@@ -14,7 +18,7 @@ router.use(methodOverride('_method'));
 
 
 // load the add chapter form 
-router.get('/chapter/add/:id' , (req ,res ) => {
+router.get('/chapter/add/:id' , canEdit ,(req ,res ) => {
      
     var manga_id = req.params.id;
     var user_id =  req.user._id;
@@ -23,9 +27,9 @@ router.get('/chapter/add/:id' , (req ,res ) => {
   })
 
   // post the data
-  router.post('/chapter/add' , (req ,res ) => {
-
-   let chapterLinks = req.body.pages;
+  router.post('/chapter/add' , canEdit ,(req ,res ) => {
+    
+  let chapterLinks = req.body.pages;
   req.body.title=req.body.title.trim();
   console.log("chapter links: "+chapterLinks);
    let arr = chapterLinks.split('\n');
@@ -68,7 +72,7 @@ router.get('/chapter/show/:id' , (req ,res ) => {
 })
 
 // edit chapter
-router.get('/chapter/edit/:id' , (req ,res ) => {
+router.get('/chapter/edit/:id' , canEdit , (req ,res ) => {
     
     console.log(req.params.id)
     var id = req.user._id;
@@ -84,7 +88,8 @@ router.get('/chapter/edit/:id' , (req ,res ) => {
   })
 
 
-  router.post("/chapter/edit/" , (req,res)=>{
+
+  router.put("/chapter/edit/" , canEdit , (req,res)=>{
    const newData = {
         title : req.body.title,
         number : req.body.number,
@@ -105,7 +110,7 @@ router.get('/chapter/edit/:id' , (req ,res ) => {
 })
 
 //delete chapter
-router.get("/chapter/delete/:id", (req,res)=>{
+router.get("/chapter/delete/:id", canDelete ,(req,res)=>{
     Chapters.findByIdAndDelete(req.params.id)
     .then(()=>{
         res.redirect("/manga/show")
@@ -122,6 +127,7 @@ router.get("/" , (req,res)=>{
 
     Manga.find({}).sort({ _id: -1 }).limit(4)
         .then(manga => {
+            let main_manga=manga;
             Chapters.find({}, { number: 1, manga_id: 1, createdAt: 1 }).sort({ _id: -1 }).limit(50).populate({ path: "manga_id", select: ["title", "poster"] })
                 .then((chapter) => {
                     chapter.forEach((ch) => {
@@ -188,9 +194,14 @@ router.get("/" , (req,res)=>{
                         })
                         newChapters.push(t);
                     })
+                    console.log("new chapters :")
                     console.log(newChapters)
+                    console.log("new manga :")
+                    console.log(manga)
                     console.log("Done")
-                    res.render("home/home",{newChapters,manga});
+
+                    res.render("home/home",{newChapters,main_manga ,moment});
+
                 })
                 .catch(err => console.log(err));
     })

@@ -3,12 +3,16 @@ const router = express.Router();
 const methodOverride = require('method-override');
 var mongoose = require('mongoose');
 
+const moment = require('moment');
 // imoprt Model
 const Manga = require("../models/Manga");
 const Chapters = require("../models/Chapter");
 
 
 const isLoggedIn = require("../helper/isLoggedin");
+const canEdit = require("../helper/canEdit");
+const canDelete = require("../helper/canDelete");
+
 const { request } = require("express");
 
 // Grab the form data
@@ -24,12 +28,12 @@ router.use(methodOverride('_method'));
 
 
 // TODO1
-router.get('/manga/add', isLoggedIn,(req, res) => {
+router.get('/manga/add', canEdit,(req, res) => {
     res.render('manga/add')
 })
 
 //post the data
-router.post('/manga/add', isLoggedIn,(req, res) => {
+router.post('/manga/add', canEdit,(req, res) => {
     let genres = req.body.genres.split(',');
     let other_names =req.body.other_names.split(',');
     for (let i = 0; i < genres.length; i++) {
@@ -80,7 +84,7 @@ router.post('/manga/add', isLoggedIn,(req, res) => {
 //////////////////////////////////////////////
 // TODO2
 // show
-router.get('/manga/show/:id', (req, res) => {
+router.get('/manga/show/:id' ,(req, res) => {
     console.log(req.params.id);
     let manga_id=req.params.id;
     Manga.findById(manga_id)
@@ -88,7 +92,10 @@ router.get('/manga/show/:id', (req, res) => {
             Chapters.find({manga_id:manga_id})
            .then((chapters)=>{
             console.log(chapters)
-            res.render("manga/show", { m , chapters })
+            chapters.sort((a, b) => parseFloat(b.number) - parseFloat(a.number));
+              
+            res.render("manga/show", { m , chapters , moment})
+
             console.log("done")
            })
            .catch(err=>console.log(err))
@@ -100,11 +107,10 @@ router.get('/manga/show/:id', (req, res) => {
 
 })
 
-
 //////////////////////////////////////////////
 // TODO3
 // edit 
-router.get('/manga/edit/:id', (req, res) => {
+router.get('/manga/edit/:id', canEdit ,(req, res) => {
     Manga.findById(req.params.id)
         .then((m) => {
             console.log(m)
@@ -119,7 +125,7 @@ router.get('/manga/edit/:id', (req, res) => {
     
 })
 
-router.put("/manga/edit/", (req, res) => {
+router.put("/manga/edit/", canEdit ,(req, res) => {
     
     let genres = req.body.genres.split(',');
     let other_names =req.body.other_names.split(',');
@@ -151,14 +157,12 @@ router.put("/manga/edit/", (req, res) => {
 //////////////////////////////////////////////
 // TODO4
 
-// router.delete("/manga/delete/", (req, res) => {
+// router.post("/manga/delete/", canDelete ,(req, res) => {
 // })
 
 
 //////////////////////////////////////////////
 // TODO5
-// router.get("/manga/allmanga/", (req, res) => {
-// })
 
 //Add All Manga
 
@@ -193,9 +197,6 @@ Manga.find({ title : {$regex: Search }})
 
 })
     
-
-
-
 
 
 module.exports = router;
