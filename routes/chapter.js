@@ -19,23 +19,18 @@ router.get('/chapter/add/:id' , (req ,res ) => {
     var user_id =  req.user._id;
     console.log(req.params.id)
     res.render('chapter/add' , {manga_id , user_id})
-    
-   
   })
 
   // post the data
   router.post('/chapter/add' , (req ,res ) => {
     
-    console.log("manga , id")
-    console.log(req.body.manga_id)
-    console.log(req.body.created_by)
-   // var id = mongoose.Types.ObjectId(req.body.manga_id.trim());
-    //req.body.manga_id=id;
+    //console.log("manga , id")
+    //console.log(req.body.manga_id)
+    //console.log(req.body.created_by)
    let chapterLinks = req.body.pages;
    let arr = chapterLinks.split('\n');
    arr.splice(arr.indexOf(""),1);
 
-   //console.log(arr);
    req.body.pages = arr;
   let chapter =  new Chapters(req.body);
 
@@ -51,7 +46,7 @@ router.get('/chapter/add/:id' , (req ,res ) => {
    
 })
 
-// show
+// chapter show
 router.get('/chapter/show/:id' , (req ,res ) => {
 
    // console.log(req.params.id);
@@ -68,7 +63,7 @@ router.get('/chapter/show/:id' , (req ,res ) => {
       
 })
 
-// edit 
+// edit chapter
 router.get('/chapter/edit/:id' , (req ,res ) => {
     
     Chapters.findById(req.params.id)
@@ -103,8 +98,7 @@ router.get('/chapter/edit/:id' , (req ,res ) => {
 
 })
 
-// delete
-//delete
+//delete chapter
 router.get("/chapter/delete/:id", (req,res)=>{
     Chapters.findByIdAndDelete(req.params.id)
     .then(()=>{
@@ -116,8 +110,7 @@ router.get("/chapter/delete/:id", (req,res)=>{
 })
 
 router.get("/testchapter" , (req,res)=>{
-    //Chapters.find().limit(-2).populate(" manga_id")
-    // .sort({_id:-1}).limit(2)
+
     Chapters.find({},{number:1,manga_id:1,  createdAt:1}).sort({_id:-1}).limit(4).populate({path: "manga_id" , select:["title" , "poster" ]})
     .then((chapter)=>{
         console.log("this is chapter")
@@ -150,13 +143,6 @@ router.get("/testchapter" , (req,res)=>{
         result.push(arr);
    
         }  
-        
-      /*  console.log("this result")
-        //console.log(result)
-        result.forEach((r)=>{
-          //  console.log("manga title" +r.manga_id.title);
-            console.log("chapter number" +r.number);
-        })*/
     })
 })
 
