@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const methodOverride = require('method-override');
 var mongoose = require('mongoose');
-
+const moment = require('moment');
 // imoprt Model
 const Chapters = require("../models/Chapter");
 const Manga = require("../models/Manga");
@@ -202,7 +202,9 @@ router.get("/" , (req,res)=>{
                     console.log("new manga :")
                     console.log(manga)
                     console.log("Done")
-                    res.render("home/home",{newChapters,main_manga});
+
+                    res.render("home/home",{newChapters,main_manga ,moment});
+
                 })
                 .catch(err => console.log(err));
     })
