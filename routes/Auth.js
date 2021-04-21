@@ -36,7 +36,7 @@ router.post("/signup", (req, res) => {
           })(req, res)
         })
         .catch((err) => {
-          res.send("ERRROR!!!");
+          res.send("ERRROR!!! "+err);
         });
   // User.count({
   //     username: user.username
