@@ -34,23 +34,22 @@ router.post("/signup", (req, res) => {
 
       }else{
         let hash = bcrypt.hashSync(req.body.password, salt);
-  user.password = hash;
-  user
-    .save()
-    .then(() => {
-      passport.authenticate("local", {
-        successRedirect: "/",
-        failureRedirect: "/auth/signup"
-      })(req, res)
-    })
-    .catch((err) => {
-      res.send("ERRROR!!!");
-    });
-
-
-      }
+        user.password = hash;
+        user.save()
+        .then(() => {
+          passport.authenticate("local", {
+            successRedirect: "/",
+            failureRedirect: "/auth/signup"
+          })(req, res)
+        })
+        .catch((err) => {
+          res.send("ERRROR!!!");
+        });
+      }// else end
+      
       //     console.log(" INCOUNT ")
-    });
+    })
+    .catch((err)=>{res.send(err)})
   //   console.log(" END COUNT")
   
 });
