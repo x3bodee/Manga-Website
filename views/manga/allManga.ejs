@@ -2,13 +2,13 @@
     <div class="container-fluid">
         <div class="row">
         <div class="col-10 col-md-6 col-xl-4 mx-auto">
-        <form>
+        <form action="/findmanga" method="POST" >
          <div class="input-group mb-3">
-             <span class="input-group-text">
-                 <i class="fas fa-search fa-lg search-icon"></i>
-             </span>
-             <input type="text" class="form-control" id="search-item" placeholder="manga...">
-         </div>
+            <span class="input-group-text">
+            <button  type="submit"><i class="fas fa-search fa-lg search-icon"></i></button>
+            </span>
+            <input type="text" name="Search" class="form-control" id="search-item" placeholder="manga...">
+        </div>
         </form>
         </div>
         </div> <!--end row-->
@@ -20,10 +20,10 @@
            filter-button-group" role="group">
 
            <button type="button" class="btn btn-classified" data-filter="*">All</button>
-           <button type="button" class="btn btn-classified" data-filter=".mystery">mystery</button>
-           <button type="button" class="btn btn-classified" data-filter=".drama">drama</button>
-           <button type="button" class="btn btn-classified" data-filter=".horror">horror</button>
-           <button type="button" class="btn btn-classified" data-filter=".thriller">thriller</button>
+           <button type="button" class="btn btn-classified" data-filter=".manga">Manga</button>
+           <button type="button" class="btn btn-classified" data-filter=".manhwa">Manhwa</button>
+           <button type="button" class="btn btn-classified" data-filter=".manhua">Manhua</button>
+           
           </div>
       </div>
     </div>
@@ -31,14 +31,35 @@
 
   <!--secound row-->
   <div class="row grid mt-2 text-center mx-auto" >
-      <!--manga-1-->
-      <div class="col-12 mx-auto col-md-4 col-xl-3 mt-2 thriller">
-        <div class="manga-poster" style="background-image: url('img/king.jpg')">
-            <div class="manga-title">
-              <h5> Attack on Titan</h5>
-           </div> 
-         </div>
+   <%manga.forEach((m)=>{%> 
+     <%if(m.origin == "manga"){%>
+   <!--manga-1 -->
+   <div class="col-12 mx-auto col-md-4 col-xl-3 mt-2 manga">
+     <div class="manga-poster" style="background-image: url('<%=m.poster%>')">
+         <div class="manga-title">
+           <h5><%=m.title%></h5>
+        </div> 
       </div>
+   </div>
+  <%}if(m.origin == "manhwa"){%> 
+   <div class="col-12 mx-auto col-md-4 col-xl-3 mt-2 manhwa">
+      <div class="manga-poster" style="background-image: url('<%=m.poster%>')">
+          <div class="manga-title">
+            <h5><%=m.title%></h5>
+         </div> 
+       </div>
+    </div>
+   <%}if(m.origin == "manhua"){%> 
+      <div class="col-12 mx-auto col-md-4 col-xl-3 mt-2 manhua">
+         <div class="manga-poster" style="background-image: url('<%=m.poster%>')">
+             <div class="manga-title">
+               <h5><%=m.title%></h5>
+            </div> 
+          </div>
+       </div>
+      <%}%>
+  <%})%>
+  
       
          <!--manga-2-->
          <div class="col-12 mx-auto col-md-4 col-xl-3 mt-2 horror">

@@ -72,11 +72,12 @@ router.post('/manga/add', isLoggedIn,(req, res) => {
 // show
 router.get('/manga/show/:id', (req, res) => {
     console.log(req.params.id);
-    Manga.findById(req.params.id)
+    let manga_id=req.params.id;
+    Manga.findById(manga_id)
         .then((m) => {
-            Chapters.find(m.manga_id)
+            Chapters.find({manga_id:manga_id})
            .then((chapters)=>{
-            console.log(m)
+            console.log(chapters)
             res.render("manga/show", { m , chapters })
             console.log("done")
            })
@@ -149,11 +150,43 @@ router.put("/manga/edit/", (req, res) => {
 // router.get("/manga/allmanga/", (req, res) => {
 // })
 
-////////////////////////////
+//Add All Manga
 
 router.get('/allmanga',(req,res)=>{
-    res.render('manga/allManga')
+    Manga.find()
+    .then((manga) => {
+        console.log(manga)
+        res.render("manga/allManga",{manga});
+    })
+    .catch((err) => {
+        console.log(err);
+       
+    })
+    
 })
+
+//search manga
+router.post('/findmanga',(req,res)=>{
+console.log("search")
+console.log(req.body)
+let Search=req.body.Search;
+Manga.find({ title : {$regex: Search }})
+ .then((result) => {
+    console.log(result)
+    res.render('manga/findmanga',{result})
+})
+.catch((err) => {
+    console.log(err);
+   
+})
+ 
+
+})
+    
+
+
+
+
 
 module.exports = router;
 
