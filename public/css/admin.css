@@ -1,0 +1,70 @@
+.header{
+    background-color: lightslategray;
+    color: white;
+    letter-spacing: 2px;
+}
+
+.row{
+    min-height: calc( 100vh - 73.6px );
+}
+
+.first-col{
+    background-color: #283046 ;
+    color: white;   
+}
+
+
+
+.admin-btn{
+    border: 3px solid #c9917e;
+    font-weight: bold;
+}
+
+.admin-btn:hover{
+    background-color: #c9917e;
+}
+
+
+
+.secound-col{
+    background-color: #e0e0e0;
+}
+
+.table-title {
+     margin-left: 30px;
+     font-weight: bold;
+     color:  #c9917e;
+     text-decoration: underline;
+}
+
+.btn-delete{
+    background-color: #ec0808;
+    color : white;
+
+}
+
+.btn-update{
+    background-color: #f4c33e;
+    color : white;
+}
+
+.btn-submit{
+    background-color:  #283046 ;
+    color: white;
+}
+
+tr th{
+    color :  #283046;
+}
+
+.tableReq-title{
+    text-align: center;
+    color:  #283046;
+}
+
+
+
+
+
+
+

@@ -16,7 +16,7 @@ router.get('/admin/users' , (req ,res ) => {
 
   User.find()
   .then(user =>{
-      res.render("admin/users" , {user})
+      res.render("admin/users" , {layout: 'admin' , user} )
   })
   .catch(err =>{
       console.log(err)
@@ -75,10 +75,11 @@ router.get('/admin/chapters' , (req ,res ) => {
 // requset
 router.get('/admin/requests' , (req ,res ) => {
 
+
   Request.find().populate({path : "user_id" , select:["username"]})
    .then(requset =>{
     console.log(requset)
-     res.render("admin/requests" , {requset})
+     res.render("admin/requests" ,{layout: 'admin' , requset})
   })
   .catch(err =>{
       console.log(err)

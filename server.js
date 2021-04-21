@@ -44,6 +44,8 @@ app.use(flash());
      next();
  })
 
+app.set("layout admin", false);
+
 app.set('view engine', 'ejs');
 
 // routes
@@ -70,11 +72,11 @@ mongoose.connect(
 
 app.listen(PORT, () => console.log(`server manga work now ${PORT} `))
 
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
 
   res.render('home/home')
 
-})
+})*/
 
 
 app.get('/manga', (req, res) => {
