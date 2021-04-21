@@ -24,7 +24,18 @@ router.post("/signup", (req, res) => {
   req.body.email=req.body.email.trim();
   let user = new User(req.body);
   console.log(req.body)
-  console.log("creating the user");
+  
+  User.count({
+      username: user.username
+    })
+    .then((count) => {
+      if (count > 0) {
+        console.log("user exist");
+        res.redirect('/signup');
+        //req.flash("error", "username already exists!!");
+
+      }else{
+        console.log("creating the user");
         let hash = bcrypt.hashSync(req.body.password, salt);
         user.password = hash;
         user.save()
@@ -38,22 +49,12 @@ router.post("/signup", (req, res) => {
         .catch((err) => {
           res.send("ERRROR!!! "+err);
         });
-  // User.count({
-  //     username: user.username
-  //   })
-  //   .then((count) => {
-  //     if (count > 0) {
-  //       console.log("user exist");
-  //       res.redirect('/signup');
-  //       //req.flash("error", "username already exists!!");
-
-  //     }else{
-        
-  //     }// else end
-  //     //     console.log(" INCOUNT ")
-  //   })
-  //   .catch((err)=>{res.send("error in count username "+err)})
-  // //   console.log(" END COUNT")
+  
+      }// else end
+      //     console.log(" INCOUNT ")
+    })
+    .catch((err)=>{res.send("error in count username "+err)})
+  //   console.log(" END COUNT")
   
 });
 
