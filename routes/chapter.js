@@ -7,6 +7,10 @@ const moment = require('moment');
 const Chapters = require("../models/Chapter");
 const Manga = require("../models/Manga");
 
+const isLoggedIn = require("../helper/isLoggedin");
+const canEdit = require("../helper/canEdit");
+const canDelete = require("../helper/canDelete");
+
 // Grab the form data
 router.use(express.urlencoded({extended : true}));
 
@@ -14,7 +18,7 @@ router.use(methodOverride('_method'));
 
 
 // load the form 
-router.get('/chapter/add/:id' , (req ,res ) => {
+router.get('/chapter/add/:id' , canEdit ,(req ,res ) => {
      
     var manga_id = req.params.id;
     var user_id =  req.user._id;
@@ -23,7 +27,7 @@ router.get('/chapter/add/:id' , (req ,res ) => {
   })
 
   // post the data
-  router.post('/chapter/add' , (req ,res ) => {
+  router.post('/chapter/add' , canEdit ,(req ,res ) => {
     
 //     console.log("manga , id")
 //     console.log(req.body.manga_id)
@@ -74,7 +78,7 @@ router.get('/chapter/show/:id' , (req ,res ) => {
 })
 
 // edit chapter
-router.get('/chapter/edit/:id' , (req ,res ) => {
+router.get('/chapter/edit/:id' , canEdit , (req ,res ) => {
     
     Chapters.findById(req.params.id)
     .then((chapter)=>{
@@ -88,7 +92,7 @@ router.get('/chapter/edit/:id' , (req ,res ) => {
   })
 
 
-  router.put("/chapter/edit/" , (req,res)=>{
+  router.put("/chapter/edit/" , canEdit , (req,res)=>{
    const newData = {
         title : req.body.title,
         number : req.body.number,
@@ -109,7 +113,7 @@ router.get('/chapter/edit/:id' , (req ,res ) => {
 })
 
 //delete chapter
-router.get("/chapter/delete/:id", (req,res)=>{
+router.get("/chapter/delete/:id", canDelete ,(req,res)=>{
     Chapters.findByIdAndDelete(req.params.id)
     .then(()=>{
         res.redirect("/")
@@ -126,6 +130,7 @@ router.get("/" , (req,res)=>{
 
     Manga.find({}).sort({ _id: -1 }).limit(4)
         .then(manga => {
+            let main_manga=manga;
             Chapters.find({}, { number: 1, manga_id: 1, createdAt: 1 }).sort({ _id: -1 }).limit(50).populate({ path: "manga_id", select: ["title", "poster"] })
                 .then((chapter) => {
                     chapter.forEach((ch) => {
@@ -192,9 +197,14 @@ router.get("/" , (req,res)=>{
                         })
                         newChapters.push(t);
                     })
+                    console.log("new chapters :")
                     console.log(newChapters)
+                    console.log("new manga :")
+                    console.log(manga)
                     console.log("Done")
-                    res.render("home/home",{newChapters,manga ,moment});
+
+                    res.render("home/home",{newChapters,main_manga ,moment});
+
                 })
                 .catch(err => console.log(err));
     })
