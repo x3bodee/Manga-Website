@@ -72,20 +72,4 @@ mongoose.connect(
 
 app.listen(PORT, () => console.log(`server manga work now ${PORT} `))
 
-app.get('/manga', (req, res) => {
 
-  res.render('manga/show')
-
-})
-
-// app.get('/manga/add', (req, res) => {
-
-//   res.render('manga/add')
-// })
-
-
-app.get('/chapter', (req, res) => {
-
-  res.render('chapter/show')
-
-})

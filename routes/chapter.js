@@ -50,7 +50,7 @@ router.get('/chapter/add/:id' , canEdit ,(req ,res ) => {
 })
    .catch((err)=>{
     console.log(err);
-    res.send("Error");
+    res.render("err/index",{err});
 })
    
 })
@@ -66,7 +66,7 @@ router.get('/chapter/show/:id' , (req ,res ) => {
 })
    .catch((err)=>{
     console.log(err);
-    res.send("Error");
+    res.render("err/index",{err});
 })
       
 })
@@ -83,7 +83,7 @@ router.get('/chapter/edit/:id' , canEdit , (req ,res ) => {
     })
        .catch((err)=>{
         console.log(err);
-        res.send("Error");
+        res.render("err/index",{err});
     })
   })
 
@@ -117,6 +117,7 @@ router.get("/chapter/delete/:id", canDelete ,(req,res)=>{
     })
     .catch(err => {
         console.log(err);
+        res.render("err/index",{err});
     })
 })
 
@@ -203,9 +204,15 @@ router.get("/" , (req,res)=>{
                     res.render("home/home",{newChapters,main_manga ,moment});
 
                 })
-                .catch(err => console.log(err));
+                .catch(err =>{
+                    console.log(err);
+                    res.render("err/index",{err});
+                });
     })
-    .catch(err=>console.log(err));
+    .catch(err=>{
+        console.log(err);
+        res.render("err/index",{err});
+    });
     
 })
 

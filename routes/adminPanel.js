@@ -19,7 +19,8 @@ router.get('/admin' , canDelete ,(req ,res ) => {
       res.render("admin/users" , {layout: 'admin' , user} )
   })
   .catch(err =>{
-      console.log(err)
+    console.log(err);
+    res.render("err/index",{err});
   })
    
   })
@@ -41,7 +42,10 @@ router.post("/admin/userss" , canDelete ,(req,res)=>{
       res.redirect("/admin")
       console.log(user)
   })
-  .catch(err=>console.log(err))
+  .catch(err=>{
+    console.log(err);
+    res.render("err/index",{err});
+  })
 
 })
 
@@ -54,7 +58,8 @@ router.post("/admin/userDelete", canDelete ,(req,res)=>{
       res.redirect("/admin")
   })
   .catch(err => {
-      console.log(err);
+    console.log(err);
+    res.render("err/index",{err});
   })
 })
 
@@ -66,7 +71,8 @@ router.get('/admin/chapters' , canDelete ,(req ,res ) => {
       res.render("admin/chapters" , {chapter})
   })
   .catch(err =>{
-      console.log(err)
+    console.log(err);
+    res.render("err/index",{err});
   })
    
   })
@@ -82,7 +88,8 @@ router.get('/admin/requests' , canDelete ,(req ,res ) => {
      res.render("admin/requests" ,{layout: 'admin' , requset})
   })
   .catch(err =>{
-      console.log(err)
+    console.log(err);
+    res.render("err/index",{err});
   })
    
   })
@@ -109,13 +116,17 @@ router.get('/admin/requests' , canDelete ,(req ,res ) => {
           res.redirect("/admin/requests")
         })
         .catch(err =>{
-          console.log(err)
+          console.log(err);
+          res.render("err/index",{err});
       })
       }else{
         res.redirect("/admin/requests")
       }
   })
-  .catch(err=>console.log(err))
+  .catch(err=>{
+    console.log(err);
+    res.render("err/index",{err});
+  })
  })
 
 module.exports = router;

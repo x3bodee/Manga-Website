@@ -9,4 +9,4 @@ test
 
 mongodb://localhost:27017/manga
 db link:
-mongodb+srv://dbAbdullah:<admin>@cluster0.b8uet.mongodb.net/manga?retryWrites=true&w=majority
+mongodb+srv://dbAbdullah:Aa11223344@cluster0.b8uet.mongodb.net/manga?retryWrites=true&w=majority

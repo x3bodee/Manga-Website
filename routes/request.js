@@ -30,8 +30,8 @@ router.get('/request/addRequest' , isLoggedin ,  (req ,res ) => {
      res.redirect("/");
  })
     .catch((err)=>{
-     console.log(err);
-     res.send("Error");
+      console.log(err);
+      res.render("err/index",{err});
  })
 
   })
