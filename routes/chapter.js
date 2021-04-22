@@ -57,12 +57,23 @@ router.get('/chapter/add/:id' , canEdit ,(req ,res ) => {
 
 // chapter show
 router.get('/chapter/show/:id' , (req ,res ) => {
-
+    
    // console.log(req.params.id);
    Chapters.findById(req.params.id)
    .then((chapter)=>{
-       console.log(chapter)
-      res.render("chapter/show" , {chapter})
+       //console.log(chapter)
+       Chapters.find({manga_id:chapter.manga_id})
+       .then((allchapter)=>{
+        console.log("all chapter")
+        console.log(allchapter)
+        allchapter.sort((a, b) => parseFloat(b.number) - parseFloat(a.number));
+        res.render("chapter/show" , {chapter,allchapter})
+       })
+       .catch((err)=>{
+        console.log(err);
+        res.send("Error");
+    })
+     
 })
    .catch((err)=>{
     console.log(err);

@@ -81,6 +81,7 @@ app.get('/manga', (req, res) => {
 // app.get('/manga/add', (req, res) => {
 
 //   res.render('manga/add')
+//mongodb:mongodb+srv://Sarah:12345@cluster0.kfsa1.mongodb.net/manga?retryWrites=true&w=majority
 // })
 
 
