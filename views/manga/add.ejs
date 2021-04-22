@@ -9,12 +9,12 @@
           
           <div class="col-md-6">
             <label for="title">Title</label>
-            <input type="text" class="form-control" name="title" placeholder="Title">
+            <input required type="text" class="form-control" name="title" placeholder="Title">
           </div>
 
           <div class="col-md-6">
             <label for="author">Author</label>
-            <input type="text" class="form-control" name="author" placeholder="Author">
+            <input required type="text" class="form-control" name="author" placeholder="Author">
           </div>
         
         </div>
@@ -23,26 +23,26 @@
         
             <div class="col-md-6">
               <label for="other_names">Other Names</label>
-              <input type="text" class="form-control" name="other_names" placeholder="Other Names">
+              <input required type="text" class="form-control" name="other_names" placeholder="Other Names">
             </div>
           
             <div class="col-md-6">
                 <label for="artists">Artists</label>
-                <input type="text" class="form-control" name="artists" placeholder="Artists">
+                <input required type="text" class="form-control" name="artists" placeholder="Artists">
             </div>
         
         </div>
       
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" name="description" rows="3"></textarea>
+            <textarea required class="form-control" name="description" rows="3"></textarea>
         </div>
           
         <div class="row">
       
             <div class="col-md-6">
               <label for="reading_direction">Reading Direction</label>
-              <select class="form-control" name="reading_direction">
+              <select required class="form-control" name="reading_direction">
                 <option value="Right to Left">Right to Left</option>
                 <option value="Left to Right">Left to Right</option>
               </select>
@@ -50,7 +50,7 @@
         
             <div class="col-md-6">
                     <label for="Origin">Origin</label>
-                    <select class="form-control" name="origin">
+                    <select required class="form-control" name="origin">
                       <option value="manga">manga</option>
                       <option value="manhwa">manhwa</option>
                       <option value="manhua">manhua</option>
@@ -60,11 +60,11 @@
 
         <div class="form-group">
           <label for="genres">Genres</label>
-          <textarea class="form-control" name="genres" rows="3"></textarea>
+          <textarea required class="form-control" name="genres" rows="3"></textarea>
         </div>
         <div class="col-md-12">
           <label for="Poster">Poster</label>
-          <input type="text" class="form-control" name="poster" placeholder="Poster">
+          <input required type="text" class="form-control" name="poster" placeholder="Poster">
       </div>
         <% if(currentUser) { %>
         <input type="text" hidden class="form-control" value=" <%=currentUser._id%>" name="user_id" placeholder="user id">

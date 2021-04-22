@@ -58,8 +58,7 @@ router.post('/manga/add', canEdit,(req, res) => {
   })
   .then((count) => {
     if (count > 0) {
-      //throw new Error("manga is already exists!!")
-      //req.flash("error", "username already exists!!");
+      
       console.log("manga is already exists!!")
         res.redirect('/manga/add')
     }else{
