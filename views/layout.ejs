@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/home.css">
   <link rel="stylesheet" href="/css/allManga.css">
-  <title>Document</title>
+
   </head>
 
   <body>
@@ -38,7 +38,7 @@
             <% if(currentUser) { %>
               <% if(currentUser.type == "1") { %>
               <li class="nav-item">
-                <a class="nav-link" href="#">Translator</a>
+                <a class="nav-link" href="/request/addRequest">Translator</a>
               </li>
             
               <% }else if(currentUser.type == "2") { %>
