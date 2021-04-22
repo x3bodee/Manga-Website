@@ -4,8 +4,8 @@
 #FCA311
 */
 
-body{
-   /* background-color: #E5E5E5;*/
+/*body{
+   /* background-color: #E5E5E5;
     background-color: #e5e5e58a;
 }
 
@@ -26,7 +26,21 @@ body{
 .navbar-light .navbar-nav .nav-link:hover , .navbar-light .navbar-brand:hover{
     color: #FCA311;
 }
+*/
 
+html, body {
+    height:100%;
+} 
+
+.nav-link{
+    color: #e1dcd6;
+    font-size: 18px;
+    margin: 0 5px;  
+}
+
+.nav-item .active{
+    border-bottom: 0.1rem solid #c89301 ; 
+}
 
 
 footer{
@@ -40,3 +54,214 @@ footer{
 .main {
     min-height: calc( 100vh - (48px + 116px) ) ;
 }
+
+/* panner */
+.panner{
+    height: 80vh;
+     background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("../img/one.png");
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-position: center;
+    }
+    
+    .height{
+        height: 80vh;
+    }
+    
+    .welcome{
+        font-size: 40px;
+        letter-spacing: 3px;
+        color: white;
+    }
+    
+    .manga-panner{
+        font-size: 50px;
+        letter-spacing: 4px;
+        color: #ffc115;
+    }
+    
+    @media (max-width: 540px){
+    
+        .welcome{
+            font-size: 30px;
+        }
+    }
+
+/* new manga */
+.title{
+    font-size: 40px;
+    color: #283046 ;
+    letter-spacing: 2px;
+}
+
+.title-underLine{
+    height: 5px;
+    width: 250px;
+     margin: 0 auto;
+     margin-top: -17px;
+}
+
+span i{
+    font-size: 30px;
+     display: inline-block;
+}
+
+.white-Background{
+    background-color: white;
+}
+
+ .manga-icon{
+    color:#c9917e ;
+}
+
+.managLine{
+    background-color:#c9917e ;
+}
+
+.card{
+    border-right: 4px solid #283046;
+    border-bottom: 4px solid #283046;
+}
+
+
+.card-shadow{
+    border-radius: 10px;
+    box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.3)
+}
+
+.card-img-top{
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+/****************************************/
+.flip-card {
+    background-color: transparent;
+    width: 210px;
+    height: 250px;
+    perspective: 1000px;
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+  }
+  
+  .flip-card-back {
+    background-color: #2980b9;
+    color: white;
+    transform: rotateY(180deg);
+  }
+
+/***************************************************/
+
+/* new chapter */
+.new-chapter{
+
+    background-color: #c9917e; 
+}
+
+/* Iphone */
+@media (min-width: 300px){
+
+    .title{
+        font-size: 30px;
+    }
+  
+    .new-chapter{
+        clip-path: polygon(0 0, 100% 4%, 100% 100%, 0 94%);
+        padding-top: 80px;
+        padding-bottom: 100px;
+    }
+}
+
+/* Ibad */
+@media (min-width: 768px){
+  
+    .new-chapter{
+        clip-path: polygon(0 0, 100% 12%, 100% 100%, 0 89%);
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+}
+
+/* 1280  laptop*/
+@media (min-width: 1280px){
+  
+    .new-chapter{
+         clip-path: polygon(0 0, 100% 17%, 100% 100%, 0 84%);
+          padding-top: 110px;
+          padding-bottom: 110px;
+    }
+}
+
+.pink-Background{
+    background-color: #c9917e;
+}
+
+.chapter-icon , .about-icon{
+    color:  #c89301;
+}
+
+.chapterLine{
+    background-color:  #c89301 ;
+}
+
+/******************************************/
+.about-img{
+    background-image: url("../img/one.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 300px;
+    height: 200px;
+    position: relative;
+}
+
+.about-img::before{
+    content:"";
+    position: absolute;
+    top: -1.3rem;
+    left: -1.5rem;
+    width: 100%;
+    height: 100%;
+    outline: 0.5rem solid  #c89301;
+    z-index: 1;
+    transition: all 1s linear;
+
+}
+
+.about-img:hover::before{
+    top: 0;
+    left:0;
+}
+
+.aboutLine{
+    background-color: #c89301;
+}
+  
+
+

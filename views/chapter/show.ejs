@@ -1,4 +1,15 @@
-<div class="container">
+<head>
+  <style>
+@media (max-width: 415px){
+ .container{
+   min-width:100% !important;
+   max-width:100% !important;
+ }
+}
+  </style>
+</head>
+
+<div class="container mt-2">
 
  <% chapter.pages.forEach((page) =>{ %>
 
@@ -11,11 +22,22 @@
 
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-3">
-        <button class="btn btn-primary float-end" type="submit">Next</button>
-      </div>
-      <div class="col-3">
-        <button class="btn btn-primary" type="submit">Preivus</button>
+
+      <!--style="margin-right: 0; text-align: right;"-->
+      <div class="col-xs-6 mt-1 mb-sm-3 text-center mx-auto ">
+            <label>change Chapter</label>
+           </div>
+   
+      <div class="col-xs-6 ">
+   <select id="disabledSelect" name="type" class="form-select" onchange="location = this.value">
+    <% allchapter.forEach((ch) =>{ %>
+     <% if(ch._id.equals(chapter._id)) {%>
+      <option selected value="/chapter/show/<%=ch._id%>"><%=ch.number%></option>
+      <%} else{%>
+      <option  value="/chapter/show/<%=ch._id%>"><%=ch.number%></option>
+      <%}})%>
+    </select>
       </div>
     </div>
     </div> 
+
