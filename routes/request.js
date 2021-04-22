@@ -27,7 +27,7 @@ router.get('/request/addRequest' , isLoggedin ,  (req ,res ) => {
    newRequest.save()
     .then(()=>{
      console.log("done")
-     res.render("home/home");
+     res.redirect("/");
  })
     .catch((err)=>{
      console.log(err);
