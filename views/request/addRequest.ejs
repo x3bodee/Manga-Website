@@ -5,9 +5,7 @@
   
     <form class="form-inline w-50 mx-auto" method="POST" action="">
 
-      <!--  <label>User Id</label> 
-        <label class="sr-only" for="password">User Id</label>-->
-        <div class="input-group mb-2 mr-sm-2">
+       <div class="input-group mb-2 mr-sm-2">
           <input hidden class="form-control" value="<%=id%>" name="user_id" id="user_id" placeholder="PASSWORS"> 
         </div>
 
@@ -17,12 +15,8 @@
           <textarea rows="3" class="form-control" name="description" id="description" placeholder="description"></textarea>
         </div>
 
-        <!--<div class="col-md-6"></div>-->
-         <!--- <label for="other_names">is closed</label>-->
-          <input type="text" hidden class="form-control" name="isClosed">
+        <input type="text" hidden class="form-control" name="isClosed">
         
-
-
         <div class="button-center mt-4">
             <button type="submit" class="btn btn-primary submit">submit</button>
         </div>
