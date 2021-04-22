@@ -42,3 +42,13 @@
 .btn-select{
     background-color:  #FCA311;;
 }
+
+h5 a{
+    color: #FCA311;
+    text-decoration: none;
+}
+
+h5 a:hover{
+color: #FCA311;
+  text-decoration: none; 
+}
