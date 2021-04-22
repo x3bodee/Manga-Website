@@ -106,8 +106,13 @@
                                                 <button type="submit" class="btn btn-dark">#<%= ch.number %></button>
                                             </form>
                                         </div>
-                                        <%}}%>
-                            <%})%>
+                                        <%}}else{%>
+                                            <div class="col-xs-3 col-md-2 offset3 ">
+                                                <form method="get" action="/chapter/show/<%=ch._id%>">
+                                                    <button type="submit" class="btn btn-dark">#<%= ch.number %></button>
+                                                </form>
+                                            </div>
+                            <%}})%>
                            
                         </div><!-- end row -->
 
