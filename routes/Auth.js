@@ -47,13 +47,17 @@ router.post("/signup", (req, res) => {
           })(req, res)
         })
         .catch((err) => {
-          res.send("ERRROR!!! "+err);
+          console.log(err);
+          res.render("err/index",{err});
         });
   
       }// else end
       //     console.log(" INCOUNT ")
     })
-    .catch((err)=>{res.send("error in count username "+err)})
+    .catch((err)=>{                    
+      console.log(err);
+      res.render("err/index",{err});
+    })
   //   console.log(" END COUNT")
   
 });
@@ -127,7 +131,8 @@ router.post('/profile', isLoggedin, (req, res) => {
       res.redirect("/")
     })
     .catch(err => {
-      console.log(err)
+      console.log(err);
+      res.render("err/index",{err});
     })
 
 })

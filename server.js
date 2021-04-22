@@ -72,21 +72,5 @@ mongoose.connect(
 
 app.listen(PORT, () => console.log(`server manga work now ${PORT} `))
 
-app.get('/manga', (req, res) => {
-
-  res.render('manga/show')
-
-})
-
-// app.get('/manga/add', (req, res) => {
-
-//   res.render('manga/add')
-//mongodb:mongodb+srv://Sarah:12345@cluster0.kfsa1.mongodb.net/manga?retryWrites=true&w=majority
-// })
 
 
-app.get('/chapter', (req, res) => {
-
-  res.render('chapter/show')
-
-})

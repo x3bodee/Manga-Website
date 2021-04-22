@@ -69,8 +69,8 @@ router.post('/manga/add', canEdit,(req, res) => {
       res.redirect('/manga/show/'+m._id);
   })
      .catch((err)=>{
-      console.log(err);
-      res.send(err);
+        console.log(err);
+        res.render("err/index",{err});
   })
     }
 //     console.log(" INCOUNT ")
@@ -98,11 +98,14 @@ router.get('/manga/show/:id' ,(req, res) => {
 
             console.log("done")
            })
-           .catch(err=>console.log(err))
+           .catch(err=>{
+            console.log(err);
+            res.render("err/index",{err});
+           })
         })
         .catch((err) => {
             console.log(err);
-            res.send("Error");
+            res.render("err/index",{err});
         })
 
 })
@@ -120,7 +123,7 @@ router.get('/manga/edit/:id', canEdit ,(req, res) => {
         })
         .catch((err) => {
             console.log(err);
-            res.send("Error");
+            res.render("err/index",{err});
         })
     
 })
@@ -149,7 +152,10 @@ router.put("/manga/edit/", canEdit ,(req, res) => {
     .then((m)=>{
         res.redirect("/manga/show/"+id);
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+        console.log(err);
+        res.render("err/index",{err});
+    })
        
 })
 
@@ -157,8 +163,27 @@ router.put("/manga/edit/", canEdit ,(req, res) => {
 //////////////////////////////////////////////
 // TODO4
 
-// router.post("/manga/delete/", canDelete ,(req, res) => {
-// })
+router.get("/manga/delete/:id", canDelete ,(req, res) => {
+    console.log("inside delete")
+    let manga_id=req.params.id;
+    Chapters.deleteMany({manga_id:manga_id})
+    .then(()=>{
+        Manga.findByIdAndDelete(manga_id)
+        .then(()=>{
+            console.log("manga is deleted")
+            res.redirect("/allmanga")
+        })
+        .catch(err => {
+            console.log(err);
+            res.render("err/index",{err});
+        })
+        
+    })
+    .catch(err => {
+        console.log(err);
+        res.render("err/index",{err});
+    })
+})
 
 
 //////////////////////////////////////////////
@@ -174,6 +199,7 @@ router.get('/allmanga',(req,res)=>{
     })
     .catch((err) => {
         console.log(err);
+        res.render("err/index",{err});
        
     })
     
@@ -191,6 +217,7 @@ Manga.find({ title : {$regex: Search }})
 })
 .catch((err) => {
     console.log(err);
+    res.render("err/index",{err});
    
 })
  
