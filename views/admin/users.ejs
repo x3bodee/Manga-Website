@@ -1,49 +1,84 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
 
-<table class="table mx-auto text-center mt-4 w-50">
-    <thead>
-      <tr>
-       <!-- <th scope="col">#</th>-->
-        <th scope="col">Username</th>
-        <th scope="col">Email</th>
-        <th scope="col">Type</th>
-        <th scope="col">Update</th>
-        <th scope="col">Delete</th>
-      </tr>
-    </thead>
-    <tbody>
+      <div class="col-md-2 first-col py-5 text-center">
 
-    <% user.forEach(function(user){ %>
-    <tr>
-      <form method="POST">
+        <h4><i class="fas fa-cog"></i> Dashboard</h4>
 
-        <td>
-            <input type="text" class="form-control"  name="username" value="<%=user.username%>">
-        </td>
+        <div class="btn-container mt-3">
+          <a href="/admin/users">
+            <button class="my-3 w-75 mx-auto admin-btn">Users</button>
+          </a>
 
-        <td>
-          <input type="emil" class="form-control"  name="email" value="<%=user.email%>">
-        </td>
+          <a href="/admin/requests">
+            <button class="my-3 w-75 mx-auto admin-btn">Users requsets</button>
+          </a>
+        </div>
+    </div> <!--end first col-->
 
-        <td>
-          <select id="disabledSelect" name="type" class="form-select">
-            <option value="1">user</option>
-            <option value="2">admin</option>
-            <option value="3">translator</option>
-          </select>
-        </td>
+    <div class="col-md-10 secound-col py-5">
+      <h2 class="table-title ">Users</h2>
 
-        <td>
-          <button type="submit" formaction="/admin/userss?id=<%=user._id %>" class="btn btn-primary">Update</button>
-        </td>
+      <table border="2" class="table mx-auto text-center mt-4 w-75">
+        <thead>
+          <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Type</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+      
+        <% user.forEach(function(user){ %>
+        <tr>
+          <form method="POST">
+      
+            <td>
+                <input type="text" class="form-control text-center"  name="username" value="<%=user.username%>">
+            </td>
+      
+            <td>
+              <input type="emil" class="form-control text-center"  name="email" value="<%=user.email%>">
+            </td>
+      
+            <td>
+              <select id="disabledSelect" name="type" class="form-select">
+                <option value="1">user</option>
+                <option value="2">admin</option>
+                <option value="3">translator</option>
+              </select>
+            </td>
+      
+            <td>
+              <button type="submit" formaction="/admin/userss?id=<%=user._id %>" class="btn btn-update">Update</button>
+            </td>
+      
+            <td> 
+              <button type="submit" formaction="/admin/userDelete?id=<%=user._id %>"  class="btn btn-delete">Delete</button>
+            </td>
+      
+          </form>
+        </tr>
+      
+        <%})%>
+      
+        </tbody>
+      </table>
+      
 
-        <td> 
-          <button type="submit" formaction="/admin/userDelete?id=<%=user._id %>"  class="btn btn-primary">Delete</button>
-        </td>
+    </div><!--end second col-->
+    </div><!--end first row-->
 
-      </form>
-    </tr>
+  </div>
+</section>
 
-    <%})%>
 
-    </tbody>
-  </table>
+
+
+
+
+
+

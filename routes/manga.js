@@ -3,6 +3,7 @@ const router = express.Router();
 const methodOverride = require('method-override');
 var mongoose = require('mongoose');
 
+const moment = require('moment');
 // imoprt Model
 const Manga = require("../models/Manga");
 const Chapters = require("../models/Chapter");
@@ -92,8 +93,9 @@ router.get('/manga/show/:id' ,(req, res) => {
            .then((chapters)=>{
             console.log(chapters)
             chapters.sort((a, b) => parseFloat(b.number) - parseFloat(a.number));
-            
-            res.render("manga/show", { m , chapters })
+              
+            res.render("manga/show", { m , chapters , moment})
+
             console.log("done")
            })
            .catch(err=>console.log(err))
