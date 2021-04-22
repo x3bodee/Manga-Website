@@ -17,14 +17,14 @@
                         <% if(currentUser.type == "2") { %>
                                 <h3 class="card-title"><%=m.title%> 
                                    
-                                    <span><a href="/manga/edit/<%=m._id%>"><i style="color: inherit;" class="far fa-edit"></i></a></span>
-                                    <span><a href="/chapter/add/<%=m._id%>"><i style="color: inherit;" class="far fa-plus-square"></i></a></span>
-                                    <span><a href="/manga/delete/<%=m._id%>"><i style="color: inherit;" class="far fa-trash-alt"></i></a></span>  
+                                    <span><a href="/manga/edit/<%=m._id%>"><i style="color: red;" class="far fa-edit"></i></a></span>
+                                    <span><a href="/chapter/add/<%=m._id%>"><i style="color: red;" class="far fa-plus-square"></i></a></span>
+                                    <span><a href="/manga/delete/<%=m._id%>"><i style="color: red;" class="far fa-trash-alt"></i></a></span>  
                                 </h3>
                             <%}else if(currentUser.type == "3"){%>
                                 <h3 class="card-title"><%=m.title%> 
-                                    <span><a href="/manga/edit/<%=m._id%>"><i style="color: inherit;" class="far fa-edit"></i></a></span>
-                                    <span><a href="/chapter/add/<%=m._id%>"><i style="color: inherit;" class="far fa-plus-square"></i></a></span>
+                                    <span><a href="/manga/edit/<%=m._id%>"><i style="color: red;" class="far fa-edit"></i></a></span>
+                                    <span><a href="/chapter/add/<%=m._id%>"><i style="color: red;" class="far fa-plus-square"></i></a></span>
                                 </h3>
                             <%}%>
                     <%}else{%>
