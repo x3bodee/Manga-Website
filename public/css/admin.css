@@ -62,7 +62,9 @@ tr th{
     color:  #283046;
 }
 
-
+tbody , thead{
+    border: 1px solid #283046;
+}
 
 
 

@@ -6,13 +6,13 @@ var mongoose = require('mongoose');
 const User = require("../models/User");
 const Chapter = require("../models/Chapter");
 const Request = require("../models/Request");
-
+const canDelete = require("../helper/canDelete");
 
 // Grab the form data
 router.use(express.urlencoded({extended : true}));
 
 // users data
-router.get('/admin/users' , (req ,res ) => {
+router.get('/admin' , canDelete ,(req ,res ) => {
 
   User.find()
   .then(user =>{
@@ -25,7 +25,7 @@ router.get('/admin/users' , (req ,res ) => {
   })
 
   // updata user data
-router.post("/admin/userss" , (req,res)=>{
+router.post("/admin/userss" , canDelete ,(req,res)=>{
   const newData = {
     username : req.body.username,
     email : req.body.email,
@@ -38,7 +38,7 @@ router.post("/admin/userss" , (req,res)=>{
   User.findByIdAndUpdate({_id : id} , {$set : newData})
   .then((user)=>{
       console.log("done")
-      res.redirect("/admin/users")
+      res.redirect("/admin")
       console.log(user)
   })
   .catch(err=>console.log(err))
@@ -46,12 +46,12 @@ router.post("/admin/userss" , (req,res)=>{
 })
 
 // delete user
-router.post("/admin/userDelete", (req,res)=>{
+router.post("/admin/userDelete", canDelete ,(req,res)=>{
   console.log("delete")
   console.log(req.body.username)
   User.findByIdAndDelete(req.query.id)
   .then(()=>{
-      res.redirect("/admin/users")
+      res.redirect("/admin")
   })
   .catch(err => {
       console.log(err);
@@ -59,7 +59,7 @@ router.post("/admin/userDelete", (req,res)=>{
 })
 
 // chapters data
-router.get('/admin/chapters' , (req ,res ) => {
+router.get('/admin/chapters' , canDelete ,(req ,res ) => {
 
   Chapter.find()
   .then(chapter =>{
@@ -73,7 +73,7 @@ router.get('/admin/chapters' , (req ,res ) => {
 
   
 // requset
-router.get('/admin/requests' , (req ,res ) => {
+router.get('/admin/requests' , canDelete ,(req ,res ) => {
 
 
   Request.find().populate({path : "user_id" , select:["username"]})
@@ -88,7 +88,7 @@ router.get('/admin/requests' , (req ,res ) => {
   })
 
  // update request
- router.post('/admin/requests' , (req ,res ) => { 
+ router.post('/admin/requests' , canDelete ,(req ,res ) => { 
    console.log("id 111")
   let request_id = req.query.request_id;
  // console.log(request_id);
