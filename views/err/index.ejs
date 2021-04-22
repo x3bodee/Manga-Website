@@ -1,6 +1,22 @@
 <head>
+  <style>
+    div{
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+    h2{
+      margin-top: 100px;
+      color:red;
+    }
+    
+  </style>
     <title>ERORR</title>
   </head>
-<h1>Some thing went wrong</h1>
-
-<%if(err != null && err != undefind){console.log(err)}%>
+  <div>
+    <h2>Erorr msg: &ensp;</h2>
+    
+    <%if(err != null && err != undefined ){console.log(err);%>
+    <h2><%= err %></h2>
+    <%}%>
+  </div>
