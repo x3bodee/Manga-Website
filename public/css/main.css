@@ -171,11 +171,20 @@ span i{
   }
   
   .flip-card-back {
-    background-color: #2980b9;
+    background-color: #282828;
     color: white;
     transform: rotateY(180deg);
   }
 
+  #bkg{
+      padding: 15px 0 ;
+  }
+
+  a{
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+  }
 /***************************************************/
 
 /* new chapter */

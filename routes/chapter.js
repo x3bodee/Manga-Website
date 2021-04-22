@@ -212,7 +212,7 @@ router.get("/" , (req,res)=>{
                     console.log(manga)
                     console.log("Done")
 
-                    res.render("home/home",{newChapters,main_manga ,moment});
+                    res.render("home/home",{newChapters,main_manga});
 
                 })
                 .catch(err =>{

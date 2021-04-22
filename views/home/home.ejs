@@ -21,199 +21,129 @@
             <div class="row">
                 <div class="col-10 mx-auto text-center">
                     <h1 class="title">New Manga</h1>
-                    <span><i class=" white-Background fas fa-book manga-icon"></i></span>
-                    <div class="title-underLine managLine"></div>
+                    <hr>
                 </div>
             </div>
             <!--end first row-->
 
             <div class="row py-5 text-center">
+              <% main_manga.forEach((m)=>{ %>
                 <div class="col-10 mx-auto col-sm-6 col-xl-3 mt-3 text-center ">
-                    <!--start card-->
-                    <div class="card mx-auto text-center card-shadow">
-                        <img src="https://xcdn-000.animemark.com/acg_covers/W600/3b/c7/3bc78f5f7103ffe62050aa113e95950dd0f5ebfb_36027_200_268.jpg
-                        " class="card-img-top pt-3" alt="poster1">
-                        <div class="card-body">
-                          <h5 class="card-title">Attack on Titan</h5>
-                        </div>
+                  <!--start card-->
+                  <div class="card mx-auto text-center card-shadow">
+                      <img src="<%= m.poster %>" class="card-img-top pt-3" alt="<%= m.title %> poster">
+                      <div class="card-body">
+                        <a href="/manga/show/<%= m._id %>"><h5 class="card-title"><%= m.title %></h5></a>
                       </div>
-                      <!--end card-->
+                  </div>
+                    <!--end card-->
                 </div><!--end-col-->
 
-                <div class="col-10 mx-auto col-sm-6 col-xl-3 mt-3 text-center">
-                    <!--start card-->
-                    <div class="card mx-auto text-center card-shadow ">
-                        <img src="https://xcdn-000.animemark.com/acg_covers/W600/3b/c7/3bc78f5f7103ffe62050aa113e95950dd0f5ebfb_36027_200_268.jpg
-                        " class="card-img-top pt-3" alt="poster1">
-                        <div class="card-body">
-                          <h5 class="card-title">Attack on Titan</h5>
-                        </div>
-                      </div>
-                      <!--end card-->
-                </div><!--end-col-->
-
-                <div class="col-10 mx-auto col-sm-6 col-xl-3 mt-3 text-center">
-                    <!--start card-->
-                    <div class="card mx-auto text-center card-shadow">
-                        <img src="https://xcdn-000.animemark.com/acg_covers/W600/3b/c7/3bc78f5f7103ffe62050aa113e95950dd0f5ebfb_36027_200_268.jpg
-                        " class="card-img-top pt-3" alt="poster3">
-                        <div class="card-body">
-                          <h5 class="card-title">Attack on Titan</h5>
-                         <!-- <p class="card-text">Some quick example text to build on the card title and make
-                               up the bulk of the card's content.</p>-->
-                        </div>
-                      </div>
-                      <!--end card-->
-                </div><!--end-col-->
-
-                <div class="col-10 mx-auto col-sm-6 col-xl-3 mt-3 text-center">
-                    <!--start card-->
-                    <div class="card mx-auto text-center card-shadow">
-                        <img src="https://xcdn-000.animemark.com/acg_covers/W600/3b/c7/3bc78f5f7103ffe62050aa113e95950dd0f5ebfb_36027_200_268.jpg
-                        " class="card-img-top pt-3" alt="poster3">
-                        <div class="card-body">
-                          <h5 class="card-title">Attack on Titan</h5>
-                         <!-- <p class="card-text">Some quick example text to build on the card title and make
-                               up the bulk of the card's content.</p>-->
-                        </div>
-                      </div>
-                      <!--end card-->
-                </div><!--end-col-->
-
+              <% }) %>
+                
             </div><!--end row-->
+            
         </div><!--end continer-->
     </section>
 
 
   <!---------------------------------------------------------------->
 
-  <section class="new-chapter">
+  <section id="bkg" style="background-color: #8ab6d6
+  ;">
+    
     <div class="container">
-        <!--title-->
-        <div class="row">
-            <div class="col-10 mx-auto text-center">
-                <h1 class="title">New Chapters</h1>
-                <span><i class=" pink-Background fas fa-book-open chapter-icon"></i></span>
-                <div class="title-underLine chapterLine"></div>
-            </div>
-        </div>
-
-
-        <div class="row my-5 text-center ">
-            <div class=" col-12 col-md-4 col-xl-3 mt-4 mx-auto text-center">
-                <div class="flip-card mx-auto">
-                    <div class="flip-card-inner">
-                      <div class="flip-card-front">
-                        <img src="https://xcdn-000.animemark.com/acg_covers/W600/3b/c7/3bc78f5f7103ffe62050aa113e95950dd0f5ebfb_36027_200_268.jpg" alt="Avatar" style="width:210px;height:250px;">
-                      </div>
-                      <div class="flip-card-back">
-                        <h1 class="mt-3">John Doe</h1> 
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-            <!--end col-->
-
-            <div class=" col-12 col-md-4 col-xl-3 mt-4 mx-auto  text-center">
-                <div class="flip-card mx-auto">
-                    <div class="flip-card-inner">
-                      <div class="flip-card-front">
-                        <img src="https://xcdn-000.animemark.com/acg_covers/W600/3b/c7/3bc78f5f7103ffe62050aa113e95950dd0f5ebfb_36027_200_268.jpg" alt="Avatar" style="width:210px;height:250px;">
-                      </div>
-                      <div class="flip-card-back">
-                        <h1 class="mt-3">John Doe</h1> 
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-            <!--end col-->
-
-            <div class="col-12 col-md-4 col-xl-3 mt-4 mx-auto ">
-                <div class="flip-card mx-auto">
-                    <div class="flip-card-inner">
-                      <div class="flip-card-front">
-                        <img src="https://xcdn-000.animemark.com/acg_covers/W600/3b/c7/3bc78f5f7103ffe62050aa113e95950dd0f5ebfb_36027_200_268.jpg" alt="Avatar" style="width:210px;height:250px;">
-                      </div>
-                      <div class="flip-card-back">
-                        <h1 class="mt-3">John Doe</h1> 
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-            <!--end col-->
-
-            <div class="col-12 col-md-4 col-xl-3 mt-4 mx-auto ">
-                <div class="flip-card mx-auto">
-                    <div class="flip-card-inner">
-                      <div class="flip-card-front">
-                        <img src="https://xcdn-000.animemark.com/acg_covers/W600/3b/c7/3bc78f5f7103ffe62050aa113e95950dd0f5ebfb_36027_200_268.jpg" alt="Avatar" style="width:210px;height:250px;">
-                      </div>
-                      <div class="flip-card-back">
-                        <h1 class="mt-3">John Doe</h1> 
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-            <!--end col-->
-        </div>
-        <!--end first row-->
-
+      <!--title-->
+      <div class="row">
+          <div class="col-10 mx-auto text-center">
+              <h1 class="title">New Chapters</h1>
+              <hr>
+          </div>
         
-        <div class="row my-5 text-center">
-            <div class="col-12 col-md-4 col-xl-3 mt-4 mx-auto ">
-                <div class="flip-card mx-auto">
-                    <div class="flip-card-inner">
-                      <div class="flip-card-front">
-                        <img src="https://xcdn-000.animemark.com/acg_covers/W600/3b/c7/3bc78f5f7103ffe62050aa113e95950dd0f5ebfb_36027_200_268.jpg" alt="Avatar" style="width:210px;height:250px;">
-                      </div>
-                      <div class="flip-card-back">
-                        <h1 class="mt-3">John Doe</h1> 
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                      </div>
+      </div><!--end row-->
+      <% let t= 1;%>
+      <% newChapters.forEach((ch)=>{ %>
+        <% if(t == 1){ %>
+          
+          <div class="row my-5 text-center">
+            <div class=" col-12 col-md-4 col-xl-3 mt-4 mx-auto text-center">
+              <div class="flip-card mx-auto">
+                  <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="<%= ch.manga_poster %>" alt="Avatar" style="width:210px;height:250px;">
+                    </div>
+                    <div class="flip-card-back">
+                      <h3 class="mt-3"><%= ch.manga_title %> </h3>
+                      <% ch.chapters_number.forEach((number,i)=>{ %>
+                        <% if(i < 3){ %>
+                          <p><a href="/chapter/show/<%= ch.chapters_id[i] %>">#ch.<%= number %></a></p>
+                      <% }}) %>
+                      
                     </div>
                   </div>
-            </div>
-            <!--end col-->
+                </div>
+          </div>
+          <!--end col-->
+            
+          <% t++; %>
+          <% console.log(t+" || 1") %>
+        <% }else if( t == 4){ %>
+          
+            <div class=" col-12 col-md-4 col-xl-3 mt-4 mx-auto text-center">
+              <div class="flip-card mx-auto">
+                  <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="<%= ch.manga_poster %>" alt="Avatar" style="width:210px;height:250px;">
+                    </div>
+                    <div class="flip-card-back">
+                      <h3 class="mt-3"><%= ch.manga_title %> </h3>
+                      <% ch.chapters_number.forEach((number,i)=>{ %>
+                        <% if(i < 3){ %>
+                          <p><a href="/chapter/show/<%= ch.chapters_id[i] %>">#ch.<%= number %></a></p>
+                      <% }}) %>
+                      
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <!--end col-->
 
-                     <div class="col-12 col-md-4 col-xl-3 mt-4 mx-auto ">
-                <div class="flip-card mx-auto">
-                    <div class="flip-card-inner">
-                      <div class="flip-card-front">
-                        <img src="https://xcdn-000.animemark.com/acg_covers/W600/3b/c7/3bc78f5f7103ffe62050aa113e95950dd0f5ebfb_36027_200_268.jpg" alt="Avatar" style="width:210px;height:250px;">
-                      </div>
-                      <div class="flip-card-back">
-                        <h1 class="mt-3">John Doe</h1> 
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                        <p>We love that guy</p>
-                      </div>
+
+          </div><!--end row-->
+          <% t=1; %>
+          <% console.log(t+" || 4") %>
+        <% }else{ %>
+          
+            <div class=" col-12 col-md-4 col-xl-3 mt-4 mx-auto text-center">
+              <div class="flip-card mx-auto">
+                  <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="<%= ch.manga_poster %>" alt="Avatar" style="width:210px;height:250px;">
+                    </div>
+                    <div class="flip-card-back">
+                      <h3 class="mt-3"><%= ch.manga_title %> </h3>
+                      <% ch.chapters_number.forEach((number,i)=>{ %>
+                        <% if(i < 3){ %>
+                          <p><a href="/chapter/show/<%= ch.chapters_id[i] %>">#ch.<%= number %></a></p>
+                      <% }}) %>
+                      
                     </div>
                   </div>
-            </div>
-            <!--end col-->
-        </div>
+                </div>
+          </div>
+          <!--end col-->
+          
+        <% t++; %>
+        <% console.log(t) %>
+        <% } %>
+      <% }) %>
+      
     </div><!--end container-->
-</section>
+
+  </section>
+
+
+  <!---------------------------------------------------------------->
 
 <!--------------------------------------------------------------------->
 
@@ -223,11 +153,11 @@
                <!--title-->
                <div class="row py-3">
                 <div class="col-10 mx-auto col-sm-6 text-center mt-3 first-col">
-                    <h1 class="title">About As</h1>
+                    <h1 class="title">About Us</h1>
                     <span><i class="white-Background fas fa-book about-icon"></i></span>
                     <div class="title-underLine aboutLine"></div>
                     <p class="pt-4">
-                        One of the most popular online manga sites while it is.
+                        One of the most popular online manga sites.
                          You can read the latest manga on the same day when they are released in Japan.
 
                     </p>

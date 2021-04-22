@@ -9,12 +9,12 @@
           
           <div class="col-md-6">
             <label for="title">Title</label>
-            <input type="text" class="form-control" value="<%= m.title %>" name="title" placeholder="Title">
+            <input required type="text" class="form-control" value="<%= m.title %>" name="title" placeholder="Title">
           </div>
 
           <div class="col-md-6">
             <label for="author">Author</label>
-            <input type="text" class="form-control" value="<%= m.author %>" name="author" placeholder="Author">
+            <input required type="text" class="form-control" value="<%= m.author %>" name="author" placeholder="Author">
           </div>
         
         </div>
@@ -23,19 +23,19 @@
         
             <div class="col-md-6">
               <label for="other_names">Other Names</label>
-              <input type="text" class="form-control" value="<%=  m.other_names.join() %>" name="other_names" placeholder="Other Names">
+              <input required type="text" class="form-control" value="<%=  m.other_names.join() %>" name="other_names" placeholder="Other Names">
             </div>
           
             <div class="col-md-6">
                 <label for="artists">Artists</label>
-                <input type="text" class="form-control" value="<%= m.artists  %>" name="artists" placeholder="Artists">
+                <input required type="text" class="form-control" value="<%= m.artists  %>" name="artists" placeholder="Artists">
             </div>
         
         </div>
       
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" name="description" rows="3"> <%= m.description %> </textarea>
+            <textarea required class="form-control" name="description" rows="3"> <%= m.description %> </textarea>
         </div>
           
         <div class="row">
@@ -75,7 +75,7 @@
 
         <div class="form-group">
           <label for="genres">Genres</label>
-          <textarea class="form-control" name="genres" rows="3"> <%= m.genres.join() %> </textarea>
+          <textarea required class="form-control" name="genres" rows="3"> <%= m.genres.join() %> </textarea>
         </div>
         <div class="col-md-12">
           <label for="Poster">Poster</label>
