@@ -23,15 +23,13 @@
 14. passport-local 
 15. express-session
 16. connect-flash 
- 
-
 
 # Wireframes :
-![Unit_2_project] ('./public/img/1.jpg') Format: ![Wireframes]()
-![Unit_2_project] ('./public/img/2.jpg') Format: ![Wireframes]()
-![Unit_2_project] ('./public/img/3.jpg') Format: ![Wireframes]()
-![Unit_2_project] ('./public/img/4.jpg') Format: ![Wireframes]()
-![Unit_2_project] ('./public/img/5.jpg') Format: ![Wireframes]()
+![Unit_2_project] (/public/img/1.jpg) Format: ![Wireframes]()
+![Unit_2_project] (/public/img/2.jpg) Format: ![Wireframes]()
+![Unit_2_project] (/public/img/3.jpg) Format: ![Wireframes]()
+![Unit_2_project] (/public/img/4.jpg) Format: ![Wireframes]()
+![Unit_2_project] (/public/img/5.jpg) Format: ![Wireframes]()
 # User stories
 Main: 
 * As a user, I want to access all pages by using the navbar 
