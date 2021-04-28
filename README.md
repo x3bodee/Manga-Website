@@ -36,7 +36,7 @@
 ![Unit_2_project](/public/img/2.jpg)
 ![Unit_2_project](/public/img/3.jpg)
 ![Unit_2_project](/public/img/4.jpg)
-![Unit_2_project](/public/img/5.jpg)
+![Unit_2_project](/public/img/5.png)
 # User stories
 Main: 
 * As a user, I want to access all pages by using the navbar 
