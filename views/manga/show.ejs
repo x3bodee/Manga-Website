@@ -1,5 +1,6 @@
 <head>
     <link rel="stylesheet" href="/css/manga.css">
+    <title>Show Manga</title>
 </head>
 
 <br>
@@ -17,14 +18,14 @@
                         <% if(currentUser.type == "2") { %>
                                 <h3 class="card-title"><%=m.title%> 
                                    
-                                    <span><a href="/manga/edit/<%=m._id%>"><i class="far fa-edit"></i></a></span>
-                                    <span><a href="/chapter/add/<%=m._id%>"><i class="far fa-plus-square"></i></a></span>
-                                    <span><a href="/manga/delete/<%=m._id%>"><i class="far fa-trash-alt"></i></a></span>  
+                                    <span><a href="/manga/edit/<%=m._id%>"><i style="color: #ffc115;" class="far fa-edit"></i></a></span>
+                                    <span><a href="/chapter/add/<%=m._id%>"><i style="color: #ffc115;" class="far fa-plus-square"></i></a></span>
+                                    <span><a href="/manga/delete/<%=m._id%>"><i style="color: #ffc115;" class="far fa-trash-alt"></i></a></span>  
                                 </h3>
                             <%}else if(currentUser.type == "3"){%>
                                 <h3 class="card-title"><%=m.title%> 
-                                    <span><a href="/manga/edit/<%=m._id%>"><i class="far fa-edit"></i></a></span>
-                                    <span><a href="/chapter/add/<%=m._id%>"><i class="far fa-plus-square"></i></a></span>
+                                    <span><a href="/manga/edit/<%=m._id%>"><i style="color: #ffc115;" class="far fa-edit"></i></a></span>
+                                    <span><a href="/chapter/add/<%=m._id%>"><i style="color: #ffc115;" class="far fa-plus-square"></i></a></span>
                                 </h3>
                             <%}%>
                     <%}else{%>
@@ -106,8 +107,13 @@
                                                 <button type="submit" class="btn btn-dark">#<%= ch.number %></button>
                                             </form>
                                         </div>
-                                        <%}}%>
-                            <%})%>
+                                        <%}}else{%>
+                                            <div class="col-xs-3 col-md-2 offset3 ">
+                                                <form method="get" action="/chapter/show/<%=ch._id%>">
+                                                    <button type="submit" class="btn btn-dark">#<%= ch.number %></button>
+                                                </form>
+                                            </div>
+                            <%}})%>
                            
                         </div><!-- end row -->
 

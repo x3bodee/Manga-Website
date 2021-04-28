@@ -185,6 +185,12 @@ span i{
     text-decoration: none;
     font-size: 18px;
   }
+  #linkk{
+    color: #14213D;
+    text-decoration: none;
+    font-size: 18px;
+}
+
 /***************************************************/
 
 /* new chapter */
@@ -241,7 +247,7 @@ span i{
 
 /******************************************/
 .about-img{
-    background-image: url("../img/one.png");
+    background-image: url("../img/king.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
