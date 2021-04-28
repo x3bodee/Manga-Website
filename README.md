@@ -1,9 +1,10 @@
 # Manga Website
 ##### Link to the website [Live Link](https://manga-sei-15.herokuapp.com/)
 # Introduction
-Our website provides a place for manga readers to read from and for translators to add their translated works.
-what is manga ?
-manga are comics or graphic novels originating from Japan. Most manga conform to a style developed in Japan in the late 19th century, and the form has a long prehistory in earlier Japanese art. The term manga is used in Japan to refer to both comics and cartooning. Outside of Japan, the word is typically used to refer to comics originally published in the country.
+##### Our website provides a place for manga readers to read from and for translators to add their translated works.
+
+#### what is manga ?
+##### manga are comics or graphic novels originating from Japan. Most manga conform to a style developed in Japan in the late 19th century, and the form has a long prehistory in earlier Japanese art. The term manga is used in Japan to refer to both comics and cartooning. Outside of Japan, the word is typically used to refer to comics originally published in the country.
 
 # Team member:
 1. Abdullah Basheer
